@@ -52,7 +52,7 @@ public extension LalyLayout  {
     
     @discardableResult
     func centers(to superView: Constraintable, on types: LayoutCenter...) -> [NSLayoutConstraint] {
-        
+
         types.checkForDuplicates()
         return types.map { center(to: superView ,on: $0) }
     }
@@ -64,7 +64,7 @@ public enum LayoutCenter: Hashable, Duplicatable {
     
     case x(_ constant: CGFloat = 0)
     case y(_ constant: CGFloat = 0)
-    
+   
     private var rawValue: Int {
         switch self {
         case .x:

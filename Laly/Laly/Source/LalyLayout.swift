@@ -94,17 +94,10 @@ public extension Sequence where Element: NSLayoutConstraint {
     @discardableResult
     func prioritized(_ priorities: UILayoutPriority?...) -> Self {
         
-        #warning("must check if both have the same no of elements")
-        
-        var index: Int = 0
-        for e in self {
-            guard let p = priorities[index] else {
-                index += 1
-                continue
+        for (i, e) in self.enumerated() {
+            if let p = priorities[i] {
+                e.priority = p
             }
-            
-            e.priority = p
-            index += 1
         }
         
         return self
