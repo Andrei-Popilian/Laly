@@ -18,29 +18,47 @@ public extension LalyLayout  {
         
         switch constraintType {
             
-        case .top(let const):
+        case .topBy(let const):
             constraint = layout.topAnchor.constraint(equalTo: superView.topAnchor, constant: const)
             
-        case .bot(let const):
+        case .botBy(let const):
             constraint = layout.bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: const)
             
-        case .lead(let const):
+        case .leadBy(let const):
             constraint = layout.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: const)
             
-        case .trail(let const):
+        case .trailBy(let const):
             constraint = layout.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: const)
             
-        case .width(.constant(let const)):
+        case .widthBy(.constant(let const)):
             constraint = layout.widthAnchor.constraint(equalTo: superView.widthAnchor, constant: const)
             
-        case .width(.multiply(let const)):
+        case .widthBy(.multiply(let const)):
             constraint = layout.widthAnchor.constraint(equalTo: superView.widthAnchor, multiplier: const)
             
-        case .height(.constant(let const)):
+        case .heightBy(.constant(let const)):
             constraint = layout.heightAnchor.constraint(equalTo: superView.heightAnchor, constant: const)
             
-        case .height(.multiply(let const)):
+        case .heightBy(.multiply(let const)):
             constraint = layout.heightAnchor.constraint(equalTo: superView.heightAnchor, multiplier: const)
+            
+        case .top:
+            constraint = layout.topAnchor.constraint(equalTo: superView.topAnchor)
+            
+        case .bot:
+            constraint = layout.bottomAnchor.constraint(equalTo: superView.bottomAnchor)
+            
+        case .lead:
+            constraint = layout.leadingAnchor.constraint(equalTo: superView.leadingAnchor)
+            
+        case .trail:
+            constraint = layout.trailingAnchor.constraint(equalTo: superView.trailingAnchor)
+            
+        case .width:
+            constraint = layout.widthAnchor.constraint(equalTo: superView.widthAnchor)
+            
+        case .height:
+            constraint = layout.heightAnchor.constraint(equalTo: superView.heightAnchor)
         }
         
         return constraint.activated()
@@ -134,7 +152,7 @@ public extension LalyLayout  {
     @discardableResult
     func edges(to superView: Constraintable, ofIdentation const: CGFloat = 0) -> [NSLayoutConstraint] {
         
-        return edges(to: superView, of: .lead(const), .trail(const), .bot(const), .top(const))
+        return edges(to: superView, of: .leadBy(const), .trailBy(const), .botBy(const), .topBy(const))
     }
     
     
@@ -666,12 +684,18 @@ public enum LayoutXOperationAxis: Duplicatable, Hashable {
 }
 
 public enum ConstraintType: Duplicatable, Hashable {
-    case top(_ constant: CGFloat = 0)
-    case bot(_ constant: CGFloat = 0)
-    case lead(_ constant: CGFloat = 0)
-    case trail(_ constant: CGFloat = 0)
-    case width(LayoutSizeType)
-    case height(LayoutSizeType)
+    case topBy(_ constant: CGFloat = 0)
+    case botBy(_ constant: CGFloat = 0)
+    case leadBy(_ constant: CGFloat = 0)
+    case trailBy(_ constant: CGFloat = 0)
+    case widthBy(LayoutSizeType)
+    case heightBy(LayoutSizeType)
+    case top
+    case bot
+    case lead
+    case trail
+    case width
+    case height
     
     private var rawValue: Int {
         switch self {
@@ -687,6 +711,18 @@ public enum ConstraintType: Duplicatable, Hashable {
             return 4
         case .height:
             return 5
+        case .topBy:
+            return 6
+        case .botBy:
+            return 7
+        case .leadBy:
+            return 8
+        case .trailBy:
+            return 9
+        case .widthBy:
+            return 10
+        case .heightBy:
+            return 11
         }
     }
     
@@ -697,7 +733,13 @@ public enum ConstraintType: Duplicatable, Hashable {
              (.lead, .lead),
              (.trail, .trail),
              (.width, .width),
-             (.height, .height):
+             (.height, .height),
+             (.topBy, .topBy),
+             (.botBy, .botBy),
+             (.leadBy, .leadBy),
+             (.trailBy, .trailBy),
+             (.widthBy, .widthBy),
+             (.heightBy, .heightBy):
             return true
         default:
             return false
