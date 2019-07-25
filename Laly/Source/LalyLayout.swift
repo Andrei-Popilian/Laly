@@ -15,6 +15,12 @@ public struct LalyLayout {
     init(constrainableLayout: Constraintable) {
         self.layout = constrainableLayout
     }
+    
+     internal func constraintWithAttributor(_ attributor: LalyLayoutAttributor, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable?) -> NSLayoutConstraint {
+        
+         NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: superView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
+            .activated()
+    }
 }
 
 public enum LalyLayoutRelation {
@@ -25,6 +31,25 @@ public enum LalyLayoutRelation {
 public struct LalyMargin {
     var points: CGFloat
     var relation: LalyLayoutRelation
+}
+
+public struct LalyLayoutAttributor {
+    
+    let attribute: NSLayoutConstraint.Attribute
+    let relation: NSLayoutConstraint.Relation
+    let constant: CGFloat
+    let multiplier: CGFloat
+    
+    init(_ attribute: NSLayoutConstraint.Attribute,
+         _ relation: NSLayoutConstraint.Relation,
+         _ constant: CGFloat = 0,
+         _ multiplier: CGFloat = 1) {
+        
+        self.attribute = attribute
+        self.relation = relation
+        self.constant = constant
+        self.multiplier = multiplier
+    }
 }
 
 prefix operator >=

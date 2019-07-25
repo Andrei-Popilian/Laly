@@ -683,48 +683,70 @@ public enum LayoutXOperationAxis: Duplicatable, Hashable {
     }
 }
 
-public enum ConstraintType: Duplicatable, Hashable {
-    case topBy(_ constant: CGFloat = 0)
-    case botBy(_ constant: CGFloat = 0)
-    case leadBy(_ constant: CGFloat = 0)
-    case trailBy(_ constant: CGFloat = 0)
-    case widthBy(LayoutSizeType)
-    case heightBy(LayoutSizeType)
+public enum ConstraintType: CaseIterable, Duplicatable, Hashable  {
+    
     case top
     case bot
     case lead
     case trail
     case width
     case height
+    case topBy(_ constant: CGFloat = 0)
+    case botBy(_ constant: CGFloat = 0)
+    case leadBy(_ constant: CGFloat = 0)
+    case trailBy(_ constant: CGFloat = 0)
+    case widthBy(LayoutSizeType)
+    case heightBy(LayoutSizeType)
+    
+    public static var allCases: [ConstraintType] {
+        return [.top, .bot, .lead, .trail, .width, .height, .topBy(), .botBy(), .leadBy(), .trailBy(), .widthBy(.constant()), .heightBy(.constant())]
+    }
     
     private var rawValue: Int {
-        switch self {
-        case .top:
-            return 0
-        case .bot:
-            return 1
-        case .lead:
-            return 2
-        case .trail:
-            return 3
-        case .width:
-            return 4
-        case .height:
-            return 5
-        case .topBy:
-            return 6
-        case .botBy:
-            return 7
-        case .leadBy:
-            return 8
-        case .trailBy:
-            return 9
-        case .widthBy:
-            return 10
-        case .heightBy:
-            return 11
+        let c = ConstraintType.allCases
+        for (i, e) in c.enumerated() {
+            if e == self {
+                return i
+            }
         }
+         fatalError("Shouldn't be here")
+        return 1
+       
     }
+    
+//    private var rawValue: Int {
+//
+//        let ss = ConstraintType.allCases
+//        for i in ss {
+//
+//        }
+//        switch self {
+//        case .top:
+//            return 0
+//        case .bot:
+//            return 1
+//        case .lead:
+//            return 2
+//        case .trail:
+//            return 3
+//        case .width:
+//            return 4
+//        case .height:
+//            return 5
+//        case .topBy:
+//            return 6
+//        case .botBy:
+//            return 7
+//        case .leadBy:
+//            return 8
+//        case .trailBy:
+//            return 9
+//        case .widthBy:
+//            return 10
+//        case .heightBy:
+//            return 11
+//        }
+//    }
     
     public static func == (lhs: ConstraintType, rhs: ConstraintType) -> Bool {
         switch (lhs, rhs) {
