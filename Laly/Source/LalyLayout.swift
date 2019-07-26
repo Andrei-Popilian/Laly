@@ -16,40 +16,17 @@ public struct LalyLayout {
         self.layout = constrainableLayout
     }
     
-     internal func constraintWithAttributor(_ attributor: LalyLayoutAttributor, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable?) -> NSLayoutConstraint {
+    internal func constraintWithAttributor(_ attributor: LalyLayoutAttributor, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable? = nil) -> NSLayoutConstraint {
         
-         NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: superView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
+        NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: superView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
             .activated()
     }
 }
 
-public enum LalyLayoutRelation {
-    case greaterThanOrEqual
-    case lessThanOrEqual
-}
-
 public struct LalyMargin {
+    
     var points: CGFloat
-    var relation: LalyLayoutRelation
-}
-
-public struct LalyLayoutAttributor {
-    
-    let attribute: NSLayoutConstraint.Attribute
-    let relation: NSLayoutConstraint.Relation
-    let constant: CGFloat
-    let multiplier: CGFloat
-    
-    init(_ attribute: NSLayoutConstraint.Attribute,
-         _ relation: NSLayoutConstraint.Relation,
-         _ constant: CGFloat = 0,
-         _ multiplier: CGFloat = 1) {
-        
-        self.attribute = attribute
-        self.relation = relation
-        self.constant = constant
-        self.multiplier = multiplier
-    }
+    var relation: NSLayoutConstraint.Relation
 }
 
 prefix operator >=
@@ -64,6 +41,24 @@ public prefix func <= (p: CGFloat) -> LalyMargin {
     return LalyMargin(points: p, relation: .lessThanOrEqual)
 }
 
+public struct LalyLayoutAttributor {
+    
+    let attribute: NSLayoutConstraint.Attribute
+    let relation: NSLayoutConstraint.Relation
+    let constant: CGFloat
+    let multiplier: CGFloat
+    
+    init(_ attribute: NSLayoutConstraint.Attribute,
+         _ relation: NSLayoutConstraint.Relation,
+         const constant: CGFloat = 0,
+         multiply multiplier: CGFloat = 1) {
+        
+        self.attribute = attribute
+        self.relation = relation
+        self.constant = constant
+        self.multiplier = multiplier
+    }
+}
 
 public extension NSLayoutConstraint {
     
@@ -126,6 +121,30 @@ public extension Sequence where Element: NSLayoutConstraint {
         }
         
         return self
+    }
+}
+
+public protocol Duplicatable {}
+
+extension Array where Element: Hashable, Element: Duplicatable {
+    
+    public func checkForDuplicates() {
+        
+        if containDuplicates() {
+            fatalError("Error: Your constraints: \(self) contains duplicates !!!")
+        }
+    }
+    
+    func containDuplicates() -> Bool {
+        
+        var dict = [Element: Bool]()
+        for e in self {
+            guard dict.updateValue(true, forKey: e) == nil else {
+                return true
+            }
+        }
+        
+        return false
     }
 }
 
