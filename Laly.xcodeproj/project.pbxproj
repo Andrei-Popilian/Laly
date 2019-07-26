@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17301CEF22EAE5E300B331F8 /* EdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17301CEE22EAE5E300B331F8 /* EdgeTests.swift */; };
 		1732C15722E84B8F00A56D61 /* Laly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C15522E84B8F00A56D61 /* Laly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1732C16322E84BE300A56D61 /* Laly+LayoutEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */; };
 		1732C16422E84BE300A56D61 /* Laly+Constraintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C15F22E84BE300A56D61 /* Laly+Constraintable.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17301CEE22EAE5E300B331F8 /* EdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTests.swift; sourceTree = "<group>"; };
 		1732C15222E84B8F00A56D61 /* Laly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Laly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1732C15522E84B8F00A56D61 /* Laly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Laly.h; sourceTree = "<group>"; };
 		1732C15622E84B8F00A56D61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,8 +101,8 @@
 			children = (
 				1732C15F22E84BE300A56D61 /* Laly+Constraintable.swift */,
 				1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */,
-				1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */,
 				1732C16022E84BE300A56D61 /* Laly+LayoutSize.swift */,
+				1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */,
 				1732C16122E84BE300A56D61 /* LalyLayout.swift */,
 				1732C15522E84B8F00A56D61 /* Laly.h */,
 				1732C15622E84B8F00A56D61 /* Info.plist */,
@@ -115,6 +117,7 @@
 				17AE433122E9A253007382AD /* LalyTests.swift */,
 				17AE433A22E9A7C1007382AD /* SizeTests.swift */,
 				17AE433C22E9A7DB007382AD /* CenterTests.swift */,
+				17301CEE22EAE5E300B331F8 /* EdgeTests.swift */,
 				17AE433322E9A253007382AD /* Info.plist */,
 			);
 			path = LalyTests;
@@ -256,6 +259,7 @@
 				17AE433222E9A253007382AD /* LalyTests.swift in Sources */,
 				17AE433D22E9A7DB007382AD /* CenterTests.swift in Sources */,
 				17AE434222E9B00D007382AD /* XCTestCase+FatalError.swift in Sources */,
+				17301CEF22EAE5E300B331F8 /* EdgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
