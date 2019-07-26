@@ -78,7 +78,7 @@ public extension LalyLayout  {
     }
     
     //prediction.laly.size(of: imageview, relation: (.height, to: .height(>=10)))
-     //prediction.laly.size(of: imageview, relation: (.height, to: .heightMultiply(>=10)))
+    //prediction.laly.size(of: imageview, relation: (.height, to: .heightMultiply(>=10)))
     @discardableResult
     func size(of superView: Constraintable, relation type: (LayoutSize, to: DetailedOperationLayoutSize)) -> NSLayoutConstraint {
         
@@ -91,12 +91,6 @@ public extension LalyLayout  {
     //prediction.laly.size(of: imageView, relations: (.height, to: height(10)), (.width, to: .width(15)))
     @discardableResult
     func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedLayoutSize)...) -> [NSLayoutConstraint] {
-        
-        let fromRelations = layoutRelations.compactMap { $0.0 }
-        let toRelations = layoutRelations.compactMap { $0.to }
-        
-        fromRelations.checkForDuplicates()
-        toRelations.checkForDuplicates()
         
         return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
     }
@@ -111,17 +105,10 @@ public extension LalyLayout  {
     //prediction.laly.sizes(of: imageView, relations: (.height, to: height(>=10)), (.width, to: .width(<=15)))
     @discardableResult
     func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedOperationLayoutSize)...) -> [NSLayoutConstraint] {
-        
-        let fromRelations = layoutRelations.compactMap { $0.0 }
-        let toRelations = layoutRelations.compactMap { $0.to }
-        
-        fromRelations.checkForDuplicates()
-        toRelations.checkForDuplicates()
-        
+
         return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
     }
 }
-
 
 public enum LayoutOperationSize: Hashable, Duplicatable {
     
@@ -213,9 +200,7 @@ public enum LayoutConstantSize: Hashable, Duplicatable {
     }
 }
 
-public enum DetailedLayoutSize: Hashable, Duplicatable {
-    
-    #warning("Does this need to be checked for duplicates ??? ")
+public enum DetailedLayoutSize {
     case widthBy(_ constant: CGFloat = 0)
     case heightBy(_ constant: CGFloat = 0)
     case widthMultiply(_ value: CGFloat)
@@ -225,44 +210,17 @@ public enum DetailedLayoutSize: Hashable, Duplicatable {
         switch type {
         case .heightBy(let c):
             return LalyLayoutAttributor(.height, .equal, const: c)
-            
         case .heightMultiply(let c):
             return LalyLayoutAttributor(.height, .equal, multiply: c)
-            
         case .widthBy(let c):
             return LalyLayoutAttributor(.width, .equal, const: c)
-            
         case .widthMultiply(let c):
             return LalyLayoutAttributor(.width, .equal, multiply: c)
         }
     }
-    
-    private var rawValue: Int {
-        switch self {
-        case .widthBy, .widthMultiply:
-            return 0
-        case .heightBy, .heightMultiply:
-            return 1
-        }
-    }
-    
-    public static func == (lhs: DetailedLayoutSize, rhs: DetailedLayoutSize) -> Bool {
-        switch (lhs, rhs) {
-        case (.widthBy, .widthBy),
-             (.heightBy, .heightBy):
-            return true
-        default:
-            return false
-        }
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.rawValue)
-    }
 }
 
-public enum DetailedOperationLayoutSize: Hashable, Duplicatable {
-    
+public enum DetailedOperationLayoutSize {
     case width(_ margin: LalyMargin)
     case height(_ margin: LalyMargin)
     case widthMultiply(_ margin: LalyMargin)
@@ -282,29 +240,6 @@ public enum DetailedOperationLayoutSize: Hashable, Duplicatable {
         case .widthMultiply(let c):
             return LalyLayoutAttributor(.width, c.relation, multiply: c.points)
         }
-    }
-    
-    private var rawValue: Int {
-        switch self {
-        case .width, .widthMultiply:
-            return 0
-        case .height, .heightMultiply:
-            return 1
-        }
-    }
-    
-    public static func == (lhs: DetailedOperationLayoutSize, rhs: DetailedOperationLayoutSize) -> Bool {
-        switch (lhs, rhs) {
-        case (.width, .width),
-             (.height, .height):
-            return true
-        default:
-            return false
-        }
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.rawValue)
     }
 }
 
