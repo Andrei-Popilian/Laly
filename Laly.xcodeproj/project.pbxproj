@@ -14,7 +14,6 @@
 		1732C16522E84BE300A56D61 /* Laly+LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16022E84BE300A56D61 /* Laly+LayoutSize.swift */; };
 		1732C16622E84BE300A56D61 /* LalyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16122E84BE300A56D61 /* LalyLayout.swift */; };
 		1732C16722E84BE300A56D61 /* Laly+LayoutCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */; };
-		17AE433222E9A253007382AD /* LalyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433122E9A253007382AD /* LalyTests.swift */; };
 		17AE433422E9A253007382AD /* Laly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1732C15222E84B8F00A56D61 /* Laly.framework */; };
 		17AE433B22E9A7C1007382AD /* SizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433A22E9A7C1007382AD /* SizeTests.swift */; };
 		17AE433D22E9A7DB007382AD /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433C22E9A7DB007382AD /* CenterTests.swift */; };
@@ -43,7 +42,6 @@
 		1732C16122E84BE300A56D61 /* LalyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LalyLayout.swift; sourceTree = "<group>"; };
 		1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Laly+LayoutCenter.swift"; sourceTree = "<group>"; };
 		17AE432F22E9A253007382AD /* LalyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LalyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		17AE433122E9A253007382AD /* LalyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LalyTests.swift; sourceTree = "<group>"; };
 		17AE433322E9A253007382AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17AE433A22E9A7C1007382AD /* SizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeTests.swift; sourceTree = "<group>"; };
 		17AE433C22E9A7DB007382AD /* CenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTests.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				17AE433E22E9AF9E007382AD /* Utils */,
-				17AE433122E9A253007382AD /* LalyTests.swift */,
 				17AE433A22E9A7C1007382AD /* SizeTests.swift */,
 				17AE433C22E9A7DB007382AD /* CenterTests.swift */,
 				17301CEE22EAE5E300B331F8 /* EdgeTests.swift */,
@@ -256,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				17AE433B22E9A7C1007382AD /* SizeTests.swift in Sources */,
-				17AE433222E9A253007382AD /* LalyTests.swift in Sources */,
 				17AE433D22E9A7DB007382AD /* CenterTests.swift in Sources */,
 				17AE434222E9B00D007382AD /* XCTestCase+FatalError.swift in Sources */,
 				17301CEF22EAE5E300B331F8 /* EdgeTests.swift in Sources */,

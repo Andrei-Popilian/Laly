@@ -162,36 +162,39 @@ class EdgeTests: XCTestCase {
         XCTAssertEqual(v.frame.width, mainView.bounds.width - 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func testsss() {
-        v.laly.edges(to: mainView, of: .trailBy(-5), .topBy(5), .heightMultiply(0.35), .widthMultiply(0.35))
-        //v.laly.edge(to: mainView, of: .bot(>=10))
+    func test_leadToLeadByRelation_ToSuperView() {
+        v.laly.edge(to: mainView, relation: (.lead, to: .leadBy(5)))
+        mainView.layoutIfNeeded()
+        
+        XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x + 5, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    
-    //    func test_defaultTopEdge_toSuperView() {
-    //        let constraint = v.laly.edge(to: mainView, of: .top)
-    //        mainView.layoutIfNeeded()
-    //
-    //        XCTAssertTrue(constraint.firstItem is UIView)
-    //
-    //        let firstItem = constraint.firstItem as! UIView
-    //        let scondItem = constraint.secondItem as! UIView
-    //        XCTAssertTrue(constraint.firstAttribute == .top)
-    //        XCTAssertTrue(constraint.secondAttribute == .top)
-    //        XCTAssertTrue(constraint.constant == 0)
-    //        XCTAssertTrue(constraint.relation == .equal)
-    //        XCTAssertTrue(constraint.multiplier == 1)
-    //        XCTAssertTrue(firstItem == v)
-    //        XCTAssertTrue(scondItem == mainView)
-    //    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func test_leadToTrailByRelation_ToSuperView() {
+        v.laly.edge(to: mainView, relation: (.lead, to: .trailBy(5)))
+        mainView.layoutIfNeeded()
+        
+        XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x + mainView.bounds.width + 5, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_topToTopByRelation_ToSuperView() {
+        v.laly.edge(to: mainView, relation: (.top, to: .topBy(10)))
+        mainView.layoutIfNeeded()
+        
+        XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
+    func test_topToBotByRelation_toSuperView() {
+        v.laly.edge(to: mainView, relation: (.top, to: .botBy(-10)))
+        mainView.layoutIfNeeded()
+        
+        XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + mainView.bounds.height - 10, accuracy: CGFloat(Float.ulpOfOne))
+    }
+    
+    func test_topToTopByRelation_andBotToBotByRelation_toSuperView() {
+        v.laly.edges(to: mainView, relations: (.top, to: .topBy(10)), (.bot, to: .botBy(-10)))
+        mainView.layoutIfNeeded()
+        
+        XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + 10, accuracy: CGFloat(Float.ulpOfOne))
+        XCTAssertEqual(v.frame.height + v.frame.origin.y, mainView.bounds.origin.y + mainView.bounds.height - 10, accuracy: CGFloat(Float.ulpOfOne))
+    }
 }

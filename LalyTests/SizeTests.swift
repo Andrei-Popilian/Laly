@@ -129,29 +129,4 @@ class SizeTests: XCTestCase {
         XCTAssertEqual(v.frame.height, mainView.frame.height + 30, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    #warning("This  should be fixed")
-    //    func test_heightLessOrEqual_toHeight_plusConstant_ofSuperView() {
-    //        let const = v.laly.size(of: mainView, relation: (.height, to: .height(<=30)))
-    //        mainView.layoutIfNeeded()
-    //        
-    //        XCTAssertTrue(const.relation == .lessThanOrEqual)
-    //        XCTAssertTrue(const.constant == 30)
-    //    }
-    //    
-    //    func test_heightGreaterOrEqual_toHeight_plusConstant_ofSuperView() {
-    //        let const = v.laly.size(of: mainView, relation: (.height, to: .height(>=30)))
-    //        mainView.layoutIfNeeded()
-    //        
-    //        XCTAssertTrue(const.relation == .greaterThanOrEqual)
-    //        XCTAssertTrue(const.constant == 30)
-    //    }
-    //    
-    //    func test_widthGreaterOrEqual_toConstant() {
-    //        let const = v.laly.size(.width(>=30))
-    //        mainView.layoutIfNeeded()
-    //        
-    //        XCTAssertTrue(const.relation == .greaterThanOrEqual)
-    //        XCTAssertTrue(const.constant == 30)
-    //    }
-    
 }
