@@ -14,17 +14,12 @@ public extension LalyLayout  {
     //prediction.laly.edge(to: superView, of: .bot)
     @discardableResult
     func edge(to superView: Constraintable, of type: ConstraintType) -> NSLayoutConstraint {
-        
-        let selfAttribute = ConstraintType.attributeFor(type)
-        let attributor = ConstraintType.atributorFor(type)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type, of: superView)
     }
     
     //prediction.laly.edgesTo(imageView: of: .lead(10), .trail())
     @discardableResult
     func edges(to superView: Constraintable, of types: ConstraintType...) -> [NSLayoutConstraint] {
-        
         types.checkForDuplicates()
         return types.map { edge(to: superView, of: $0) }
     }
@@ -33,17 +28,12 @@ public extension LalyLayout  {
     //prediction.laly.edge(to: superView, of: .widthMultiply(<=0.2))
     @discardableResult
     func edge(to superView: Constraintable, of type: ConstraintOperationType) -> NSLayoutConstraint {
-        
-        let selfAttribute = ConstraintOperationType.attributeFor(type)
-        let attributor = ConstraintOperationType.atributorFor(type)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type, of: superView)
     }
     
     //prediction.laly.edgesTo(imageView: of: .lead(>=10), .trail())
     @discardableResult
     func edges(to superView: Constraintable, of types: ConstraintOperationType...) -> [NSLayoutConstraint] {
-        
         types.checkForDuplicates()
         return types.map { edge(to: superView, of: $0) }
     }
@@ -52,86 +42,65 @@ public extension LalyLayout  {
     //preddiction.laly.edges(to: imageView)
     @discardableResult
     func edges(to superView: Constraintable, ofIdentation const: CGFloat = 0) -> [NSLayoutConstraint] {
-        
-        return edges(to: superView, of: .leadBy(const), .trailBy(-const), .botBy(-const), .topBy(const))
+        edges(to: superView, of: .leadBy(const), .trailBy(-const), .botBy(-const), .topBy(const))
     }
     
     //prediction.laly.edge(to: photoImageView, relation: (.top, to: .bot(10)))
     @discardableResult
     func edge(to superView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYAxis)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutYAxisAnchor.attributeFor(relation.0)
-        let attributor = LayoutYAxis.atributorFor(relation.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
     }
     
     //prediction.laly.edges(to: imageView, relations: (.top, to: .top(-10)), (.bot, to: bot(-10)))
     @discardableResult
     func edges(to superView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYAxis)...) -> [NSLayoutConstraint] {
-        
         return relations.map { edge(to: superView, relation: ($0.0, to: $0.to)) }
     }
     
     //prediction.laly.edge(to: photoImageView, relation: (.top, to: .bot(<=10)))
     @discardableResult
     func edge(to superView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYOperationAxis)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutYAxisAnchor.attributeFor(relation.0)
-        let attributor = LayoutYOperationAxis.atributorFor(relation.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
     }
     
     //prediction.laly.edges(to: imageView, relations: (.top, to: .top(>=-10)), (.bot, to: bot(-10)))
     @discardableResult
-    func edges(to superView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint] {
-        
+    func edges(to superView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint]  {
         return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
     }
     
     //prediction.laly.edge(to: imageView, relation: (.lead, to: lead(10)))
     @discardableResult
     func edge(to superView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXAxis)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutXAxisAnchor.attributeFor(relation.0)
-        let attributor = LayoutXAxis.atributorFor(relation.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
     }
     
     //prediction.laly.edges(to: imageView, relations: (.lead, to: .lead(-10)), (.trail, to: .trail(-10)))
     @discardableResult
     func edges(to superView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXAxis)...) -> [NSLayoutConstraint] {
-        
         return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
     }
     
     //prediction.laly.edge(to: imageView, relation: (.lead, to: lead(>=10)))
     @discardableResult
     func edge(to superView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXOperationAxis)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutXAxisAnchor.attributeFor(relation.0)
-        let attributor = LayoutXOperationAxis.atributorFor(relation.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
     }
     
     //prediction.laly.edges(to: imageView, relations: (.lead, to: .lead(-10)), (.trail, to: .trail(>=-10)))
     @discardableResult
     func edges(to superView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXOperationAxis)...) -> [NSLayoutConstraint] {
-        
         return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
     }
 }
 
-public enum LayoutYAxisAnchor {
+public enum LayoutYAxisAnchor: Attributable {
     case top
     case bot
     case centerY
     
-    static func attributeFor(_ type: LayoutYAxisAnchor) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .top:
             return .top
         case .bot:
@@ -142,47 +111,47 @@ public enum LayoutYAxisAnchor {
     }
 }
 
-public enum LayoutYAxis {
+public enum LayoutYAxis: Relationable {
     case topBy(_ constant: CGFloat = 0)
     case botBy(_ constant: CGFloat = 0)
     case centerYBy(_ constant: CGFloat = 0)
     
-    static func atributorFor(_ type: LayoutYAxis) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .topBy(let c):
-            return LalyLayoutAttributor(.top, .equal, const: c)
+            return LalyRelationer(.top, .equal, const: c)
         case .botBy(let c):
-            return LalyLayoutAttributor(.bottom, .equal, const: c)
+            return LalyRelationer(.bottom, .equal, const: c)
         case .centerYBy(let c):
-            return LalyLayoutAttributor(.centerY, .equal, const: c)
+            return LalyRelationer(.centerY, .equal, const: c)
         }
     }
 }
 
-public enum LayoutYOperationAxis {
+public enum LayoutYOperationAxis: Relationable {
     case topBy(_ margin: LalyMargin)
     case botBy(_ margin: LalyMargin)
     case centerYBy(_ margin: LalyMargin)
     
-    static func atributorFor(_ type: LayoutYOperationAxis) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .topBy(let c):
-            return LalyLayoutAttributor(.top, c.relation, const: c.points)
+            return LalyRelationer(.top, c.relation, const: c.points)
         case .botBy(let c):
-            return LalyLayoutAttributor(.bottom, c.relation, const: c.points)
+            return LalyRelationer(.bottom, c.relation, const: c.points)
         case .centerYBy(let c):
-            return LalyLayoutAttributor(.centerY, c.relation, const: c.points)
+            return LalyRelationer(.centerY, c.relation, const: c.points)
         }
     }
 }
 
-public enum LayoutXAxisAnchor {
+public enum LayoutXAxisAnchor: Attributable {
     case lead
     case trail
     case centerX
     
-    static func attributeFor(_ type: LayoutXAxisAnchor) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .lead:
             return .leading
         case .trail:
@@ -193,42 +162,41 @@ public enum LayoutXAxisAnchor {
     }
 }
 
-public enum LayoutXAxis {
+public enum LayoutXAxis: Relationable {
     case leadBy(_ constant: CGFloat = 0)
     case trailBy(_ constant: CGFloat = 0)
     case centerXBy(_ constant: CGFloat = 0)
     
-    static func atributorFor(_ type: LayoutXAxis) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .leadBy(let c):
-            return LalyLayoutAttributor(.leading, .equal, const: c)
+            return LalyRelationer(.leading, .equal, const: c)
         case .trailBy(let c):
-            return LalyLayoutAttributor(.trailing, .equal, const: c)
+            return LalyRelationer(.trailing, .equal, const: c)
         case .centerXBy(let c):
-            return LalyLayoutAttributor(.centerX, .equal, const: c)
+            return LalyRelationer(.centerX, .equal, const: c)
         }
     }
 }
 
-public enum LayoutXOperationAxis {
+public enum LayoutXOperationAxis: Relationable {
     case leadBy(_ margin: LalyMargin)
     case trailBy(_ margin: LalyMargin)
     case centerXBy(_ margin: LalyMargin)
     
-    static func atributorFor(_ type: LayoutXOperationAxis) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .leadBy(let c):
-            return LalyLayoutAttributor(.leading, c.relation, const: c.points)
+            return LalyRelationer(.leading, c.relation, const: c.points)
         case .trailBy(let c):
-            return LalyLayoutAttributor(.trailing, c.relation, const: c.points)
+            return LalyRelationer(.trailing, c.relation, const: c.points)
         case .centerXBy(let c):
-            return LalyLayoutAttributor(.centerX, c.relation, const: c.points)
+            return LalyRelationer(.centerX, c.relation, const: c.points)
         }
     }
 }
 
-public enum ConstraintType: Duplicatable, Hashable  {
-    
+public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
     case top
     case bot
     case lead
@@ -270,6 +238,7 @@ public enum ConstraintType: Duplicatable, Hashable  {
         }
     }
     
+    #warning("Think about this")
     //    private var rawValue: Int {
     //        let c = ConstraintType.allCases
     //        for (i, e) in c.enumerated() {
@@ -282,8 +251,8 @@ public enum ConstraintType: Duplicatable, Hashable  {
     //
     //    }
     
-    static func attributeFor(_ type: ConstraintType) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .top, .topBy, .topMultiply:
             return .top
         case .bot, .botBy, .botMultiply:
@@ -299,47 +268,46 @@ public enum ConstraintType: Duplicatable, Hashable  {
         }
     }
     
-    static func atributorFor(_ type: ConstraintType) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .top:
-            return LalyLayoutAttributor(.top, .equal)
+            return LalyRelationer(.top, .equal)
         case .topBy(let c):
-            return LalyLayoutAttributor(.top, .equal, const: c)
+            return LalyRelationer(.top, .equal, const: c)
         case .topMultiply(let c):
-            return LalyLayoutAttributor(.top, .equal, multiply: c)
+            return LalyRelationer(.top, .equal, multiply: c)
         case .bot:
-            return LalyLayoutAttributor(.bottom, .equal)
+            return LalyRelationer(.bottom, .equal)
         case .botBy(let c):
-            return LalyLayoutAttributor(.bottom, .equal, const: c)
+            return LalyRelationer(.bottom, .equal, const: c)
         case .botMultiply(let c):
-            return LalyLayoutAttributor(.bottom, .equal, multiply: c)
+            return LalyRelationer(.bottom, .equal, multiply: c)
         case .height:
-            return LalyLayoutAttributor(.height, .equal)
+            return LalyRelationer(.height, .equal)
         case .heightBy(let c):
-            return LalyLayoutAttributor(.height, .equal, const: c)
+            return LalyRelationer(.height, .equal, const: c)
         case .heightMultiply(let c):
-            return LalyLayoutAttributor(.height, .equal, multiply: c)
+            return LalyRelationer(.height, .equal, multiply: c)
         case .width:
-            return LalyLayoutAttributor(.width, .equal)
+            return LalyRelationer(.width, .equal)
         case .widthBy(let c):
-            return LalyLayoutAttributor(.width, .equal, const: c)
+            return LalyRelationer(.width, .equal, const: c)
         case .widthMultiply(let c):
-            return LalyLayoutAttributor(.width, .equal, multiply: c)
+            return LalyRelationer(.width, .equal, multiply: c)
         case .lead:
-            return LalyLayoutAttributor(.leading, .equal)
+            return LalyRelationer(.leading, .equal)
         case .leadBy(let c):
-            return LalyLayoutAttributor(.leading, .equal, const: c)
+            return LalyRelationer(.leading, .equal, const: c)
         case .leadMultiply(let c):
-            return LalyLayoutAttributor(.leading, .equal, multiply: c)
+            return LalyRelationer(.leading, .equal, multiply: c)
         case .trail:
-            return LalyLayoutAttributor(.trailing, .equal)
+            return LalyRelationer(.trailing, .equal)
         case .trailBy(let c):
-            return LalyLayoutAttributor(.trailing, .equal, const: c)
+            return LalyRelationer(.trailing, .equal, const: c)
         case .trailMultiply(let c):
-            return LalyLayoutAttributor(.trailing, .equal, multiply: c)
+            return LalyRelationer(.trailing, .equal, multiply: c)
         }
     }
-    
     public static func == (lhs: ConstraintType, rhs: ConstraintType) -> Bool {
         switch (lhs, rhs) {
         case (.top, .top), (.bot, .bot), (.lead, .lead), (.trail, .trail), (.width, .width), (.height, .height), (.topBy, .topBy), (.botBy, .botBy), (.leadBy, .leadBy), (.trailBy, .trailBy), (.widthBy, .widthBy), (.heightBy, .heightBy), (.top, .topBy), (.topBy, .top), (.bot, .botBy), (.botBy, .bot), (.lead, .leadBy), (.leadBy, .lead), (.trail, .trailBy), (.trailBy, .trail), (.width, .widthBy), (.widthBy, .width), (.height, .heightBy), (.heightBy, .height):
@@ -354,8 +322,7 @@ public enum ConstraintType: Duplicatable, Hashable  {
     }
 }
 
-public enum ConstraintOperationType: Duplicatable, Hashable {
-    
+public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationable {
     case top(_ margin: LalyMargin)
     case bot(_ margin: LalyMargin)
     case lead(_ margin: LalyMargin)
@@ -365,8 +332,8 @@ public enum ConstraintOperationType: Duplicatable, Hashable {
     case widthMultiply(_ margin: LalyMargin)
     case heightMultiply(_ margin: LalyMargin)
     
-    static func attributeFor(_ type: ConstraintOperationType) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .top:
             return .top
         case .bot:
@@ -382,24 +349,24 @@ public enum ConstraintOperationType: Duplicatable, Hashable {
         }
     }
     
-    static func atributorFor(_ type: ConstraintOperationType) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .top(let c):
-            return LalyLayoutAttributor(.top, c.relation, const: c.points)
+            return LalyRelationer(.top, c.relation, const: c.points)
         case .bot(let c):
-            return LalyLayoutAttributor(.bottom, c.relation, const: c.points)
+            return LalyRelationer(.bottom, c.relation, const: c.points)
         case .lead(let c):
-            return LalyLayoutAttributor(.leading, c.relation, const: c.points)
+            return LalyRelationer(.leading, c.relation, const: c.points)
         case .trail(let c):
-            return LalyLayoutAttributor(.trailing, c.relation, const: c.points)
+            return LalyRelationer(.trailing, c.relation, const: c.points)
         case .height(let c):
-            return LalyLayoutAttributor(.height, c.relation, const: c.points)
+            return LalyRelationer(.height, c.relation, const: c.points)
         case .width(let c):
-            return LalyLayoutAttributor(.width, c.relation, const: c.points)
+            return LalyRelationer(.width, c.relation, const: c.points)
         case .heightMultiply(let c):
-            return LalyLayoutAttributor(.height, c.relation, multiply: c.points)
+            return LalyRelationer(.height, c.relation, multiply: c.points)
         case .widthMultiply(let c):
-            return LalyLayoutAttributor(.width, c.relation, multiply: c.points)
+            return LalyRelationer(.width, c.relation, multiply: c.points)
         }
     }
     

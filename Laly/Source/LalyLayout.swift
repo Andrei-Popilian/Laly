@@ -16,7 +16,7 @@ public struct LalyLayout {
         self.layout = constrainableLayout
     }
     
-    internal func constraintWithAttributor(_ attributor: LalyLayoutAttributor, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable? = nil) -> NSLayoutConstraint {
+    internal func constraintWithAttributor(_ attributor: LalyRelationer, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable? = nil) -> NSLayoutConstraint {
         
         NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: superView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
             .activated()
@@ -41,7 +41,7 @@ public prefix func <= (p: CGFloat) -> LalyMargin {
     return LalyMargin(points: p, relation: .lessThanOrEqual)
 }
 
-public struct LalyLayoutAttributor {
+public struct LalyRelationer {
     
     let attribute: NSLayoutConstraint.Attribute
     let relation: NSLayoutConstraint.Relation
@@ -125,6 +125,45 @@ public extension Sequence where Element: NSLayoutConstraint {
 }
 
 public protocol Duplicatable {}
+
+typealias AtributoRelationable = Attributable & Relationable
+
+protocol Attributable {
+    func getAttribute() -> NSLayoutConstraint.Attribute
+}
+
+protocol Relationable {
+    func getAttributor() -> LalyRelationer
+}
+
+internal extension LalyLayout {
+    
+    func constraintBasedOnLayoutType(type: AtributoRelationable) -> NSLayoutConstraint {
+        
+        let selfAttribute = type.getAttribute()
+        let attributor = type.getAttributor()
+        
+        return constraintWithAttributor(attributor, selfAttribute)
+    }
+    
+    func constraintBasedOnLayoutType(type: AtributoRelationable, of superView: Constraintable) -> NSLayoutConstraint {
+        
+        let selfAttribute = type.getAttribute()
+        let attributor = type.getAttributor()
+        
+        return constraintWithAttributor(attributor, selfAttribute, superView)
+    }
+    
+    func constraintBasedOnLayoutType(type: Attributable, toType: Relationable, of superView: Constraintable) -> NSLayoutConstraint {
+        
+        let selfAttribute = type.getAttribute()
+        let attributor = toType.getAttributor()
+        
+        return constraintWithAttributor(attributor, selfAttribute, superView)
+    }
+    
+}
+
 
 extension Array where Element: Hashable, Element: Duplicatable {
     

@@ -11,47 +11,35 @@ import UIKit
 public extension LalyLayout  {
     
     @discardableResult
-    func center(to superView: Constraintable, on centerType: LayoutConstantCenter) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutConstantCenter.attributeFor(centerType)
-        let attributor = LayoutConstantCenter.atributorFor(centerType)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+    func center(to superView: Constraintable, on type: LayoutConstantCenter) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: superView)
     }
     
     @discardableResult
-    func center(to superView: Constraintable, on centerType: LayoutCenter) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutCenter.attributeFor(centerType)
-        let attributor = LayoutCenter.atributorFor(centerType)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+    func center(to superView: Constraintable, on type: LayoutCenter) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: superView)
     }
     
     @discardableResult
     func center(to superView: Constraintable, on types: LayoutCenter...) -> [NSLayoutConstraint] {
-        
         types.checkForDuplicates()
         return types.map { center(to: superView ,on: $0) }
     }
     
     @discardableResult
     func center(to superView: Constraintable, on types: LayoutConstantCenter...) -> [NSLayoutConstraint] {
-        
         types.checkForDuplicates()
         return types.map { center(to: superView ,on: $0) }
     }
-    
 }
 
 
-public enum LayoutConstantCenter: Hashable, Duplicatable {
-    
+public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
     case x(_ constant: CGFloat = 0)
     case y(_ constant: CGFloat = 0)
     
-    static func attributeFor(_ type: LayoutConstantCenter) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .x:
             return NSLayoutConstraint.Attribute.centerX
         case .y:
@@ -59,12 +47,12 @@ public enum LayoutConstantCenter: Hashable, Duplicatable {
         }
     }
     
-    static func atributorFor(_ type: LayoutConstantCenter) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .x(let c):
-            return LalyLayoutAttributor(.centerX, .equal, const: c)
+            return LalyRelationer(.centerX, .equal, const: c)
         case .y(let c):
-            return LalyLayoutAttributor(.centerY, .equal, const: c)
+            return LalyRelationer(.centerY, .equal, const: c)
         }
     }
     
@@ -92,12 +80,12 @@ public enum LayoutConstantCenter: Hashable, Duplicatable {
     }
 }
 
-public enum LayoutCenter: Hashable, Duplicatable {
+public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
     case x
     case y
     
-    static func attributeFor(_ type: LayoutCenter) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .x:
             return NSLayoutConstraint.Attribute.centerX
         case .y:
@@ -105,12 +93,12 @@ public enum LayoutCenter: Hashable, Duplicatable {
         }
     }
     
-    static func atributorFor(_ type: LayoutCenter) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .x:
-            return LalyLayoutAttributor(.centerX, .equal)
+            return LalyRelationer(.centerX, .equal)
         case .y:
-            return LalyLayoutAttributor(.centerY, .equal)
+            return LalyRelationer(.centerY, .equal)
         }
     }
     

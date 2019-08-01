@@ -13,27 +13,18 @@ public extension LalyLayout  {
     //prediction.laly.size(.height(>=10))
     @discardableResult
     func size(_ type: LayoutOperationSize) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutOperationSize.attributeFor(type)
-        let attributor = LayoutOperationSize.atributorFor(type)
-        
-        return constraintWithAttributor(attributor, selfAttribute)
+        constraintBasedOnLayoutType(type: type)
     }
     
     //prediction.laly.size(.height(10))
     @discardableResult
     func size(_ type: LayoutConstantSize) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutConstantSize.attributeFor(type)
-        let attributor = LayoutConstantSize.atributorFor(type)
-        
-        return constraintWithAttributor(attributor, selfAttribute)
+        constraintBasedOnLayoutType(type: type)
     }
     
     //prediction.laly.size(.height(>=10), .width(>=10))
     @discardableResult
     func size(_ dimensionTypes: LayoutOperationSize...) -> [NSLayoutConstraint] {
-        
         dimensionTypes.checkForDuplicates()
         return dimensionTypes.map { size($0) }
     }
@@ -41,7 +32,6 @@ public extension LalyLayout  {
     //prediction.laly.size(.height(10), .width(10))
     @discardableResult
     func size(_ dimensionTypes: LayoutConstantSize...) -> [NSLayoutConstraint] {
-        
         dimensionTypes.checkForDuplicates()
         return dimensionTypes.map { size($0) }
     }
@@ -49,74 +39,54 @@ public extension LalyLayout  {
     //prediction.laly.size(of: imageView, on: .width)
     @discardableResult
     func size(of superView: Constraintable, on type: LayoutSize) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutSize.attributeFor(type)
-        let attributor = LayoutSize.atributorFor(type)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type, of: superView)
     }
     
     //prediction.laly.size(of: imageView, relation: (.height, to: .width))
     @discardableResult
     func size(of superView: Constraintable, relation type: (LayoutSize, to: LayoutSize)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutSize.attributeFor(type.0)
-        let attributor = LayoutSize.atributorFor(type.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
     }
     
     //prediction.laly.size(of: imageView, relation: (.height, to: .height(10)))
     //prediction.laly.size(of: imageView, relation: (.height, to: .heightMuliply(10)))
     @discardableResult
     func size(of superView: Constraintable, relation type: (LayoutSize, to: DetailedLayoutSize)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutSize.attributeFor(type.0)
-        let attributor = DetailedLayoutSize.atributorFor(type.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
     }
     
     //prediction.laly.size(of: imageview, relation: (.height, to: .height(>=10)))
     //prediction.laly.size(of: imageview, relation: (.height, to: .heightMultiply(>=10)))
     @discardableResult
     func size(of superView: Constraintable, relation type: (LayoutSize, to: DetailedOperationLayoutSize)) -> NSLayoutConstraint {
-        
-        let selfAttribute = LayoutSize.attributeFor(type.0)
-        let attributor = DetailedOperationLayoutSize.atributorFor(type.to)
-        
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
     }
     
     //prediction.laly.size(of: imageView, relations: (.height, to: height(10)), (.width, to: .width(15)))
     @discardableResult
     func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedLayoutSize)...) -> [NSLayoutConstraint] {
-        
         return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
     }
     
     //prediction.laly.size(to: imageView)
     @discardableResult
     func size(of superView: Constraintable) -> [NSLayoutConstraint] {
-        
-        return size(of: superView, relations: (.width, to: .widthBy(0)), (.height, to: .heightBy(0)))
+        size(of: superView, relations: (.width, to: .widthBy(0)), (.height, to: .heightBy(0)))
     }
     
     //prediction.laly.sizes(of: imageView, relations: (.height, to: height(>=10)), (.width, to: .width(<=15)))
     @discardableResult
     func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedOperationLayoutSize)...) -> [NSLayoutConstraint] {
-
         return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
     }
 }
 
-public enum LayoutOperationSize: Hashable, Duplicatable {
-    
+public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
     case height(_ margin: LalyMargin)
     case width(_ margin: LalyMargin)
     
-    static func attributeFor(_ type: LayoutOperationSize) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .height:
             return .height
         case .width:
@@ -124,10 +94,10 @@ public enum LayoutOperationSize: Hashable, Duplicatable {
         }
     }
     
-    static func atributorFor(_ type: LayoutOperationSize) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .height(let c), .width(let c):
-            return LalyLayoutAttributor(.notAnAttribute, c.relation, const: c.points)
+            return LalyRelationer(.notAnAttribute, c.relation, const: c.points)
         }
     }
     
@@ -155,26 +125,9 @@ public enum LayoutOperationSize: Hashable, Duplicatable {
     }
 }
 
-public enum LayoutConstantSize: Hashable, Duplicatable {
-    
+public enum LayoutConstantSize: Hashable, Duplicatable, AtributoRelationable {
     case height(_ constant: CGFloat)
     case width(_ constant: CGFloat)
-    
-    static func attributeFor(_ type: LayoutConstantSize) -> NSLayoutConstraint.Attribute {
-        switch type {
-        case .height:
-            return .height
-        case .width:
-            return .width
-        }
-    }
-    
-    static func atributorFor(_ type: LayoutConstantSize) -> LalyLayoutAttributor {
-        switch type {
-        case .height(let c), .width(let c):
-            return LalyLayoutAttributor(.notAnAttribute, .equal, const: c)
-        }
-    }
     
     private var rawValue: Int {
         switch self {
@@ -182,6 +135,22 @@ public enum LayoutConstantSize: Hashable, Duplicatable {
             return 0
         case .width:
             return 1
+        }
+    }
+    
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
+        case .height:
+            return .height
+        case .width:
+            return .width
+        }
+    }
+    
+    func getAttributor() -> LalyRelationer {
+        switch self {
+        case .height(let c), .width(let c):
+            return LalyRelationer(.notAnAttribute, .equal, const: c)
         }
     }
     
@@ -200,55 +169,55 @@ public enum LayoutConstantSize: Hashable, Duplicatable {
     }
 }
 
-public enum DetailedLayoutSize {
+public enum DetailedLayoutSize: Relationable {
     case widthBy(_ constant: CGFloat = 0)
     case heightBy(_ constant: CGFloat = 0)
     case widthMultiply(_ value: CGFloat)
     case heightMultiply(_ value: CGFloat)
     
-    static func atributorFor(_ type: DetailedLayoutSize) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .heightBy(let c):
-            return LalyLayoutAttributor(.height, .equal, const: c)
+            return LalyRelationer(.height, .equal, const: c)
         case .heightMultiply(let c):
-            return LalyLayoutAttributor(.height, .equal, multiply: c)
+            return LalyRelationer(.height, .equal, multiply: c)
         case .widthBy(let c):
-            return LalyLayoutAttributor(.width, .equal, const: c)
+            return LalyRelationer(.width, .equal, const: c)
         case .widthMultiply(let c):
-            return LalyLayoutAttributor(.width, .equal, multiply: c)
+            return LalyRelationer(.width, .equal, multiply: c)
         }
     }
 }
 
-public enum DetailedOperationLayoutSize {
+public enum DetailedOperationLayoutSize: Relationable {
     case width(_ margin: LalyMargin)
     case height(_ margin: LalyMargin)
     case widthMultiply(_ margin: LalyMargin)
     case heightMultiply(_ margin: LalyMargin)
     
-    static func atributorFor(_ type: DetailedOperationLayoutSize) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .height(let c):
-            return LalyLayoutAttributor(.height, c.relation, const: c.points)
+            return LalyRelationer(.height, c.relation, const: c.points)
             
         case .heightMultiply(let c):
-            return LalyLayoutAttributor(.height, c.relation, multiply: c.points)
+            return LalyRelationer(.height, c.relation, multiply: c.points)
             
         case .width(let c):
-            return LalyLayoutAttributor(.width, c.relation, const: c.points)
+            return LalyRelationer(.width, c.relation, const: c.points)
             
         case .widthMultiply(let c):
-            return LalyLayoutAttributor(.width, c.relation, multiply: c.points)
+            return LalyRelationer(.width, c.relation, multiply: c.points)
         }
     }
 }
 
-public enum LayoutSize: Hashable, Duplicatable {
+public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
     case width
     case height
     
-    static func attributeFor(_ type: LayoutSize) -> NSLayoutConstraint.Attribute {
-        switch type {
+    func getAttribute() -> NSLayoutConstraint.Attribute {
+        switch self {
         case .height:
             return .height
         case .width:
@@ -256,12 +225,12 @@ public enum LayoutSize: Hashable, Duplicatable {
         }
     }
     
-    static func atributorFor(_ type: LayoutSize) -> LalyLayoutAttributor {
-        switch type {
+    func getAttributor() -> LalyRelationer {
+        switch self {
         case .height:
-            return LalyLayoutAttributor(.height, .equal)
+            return LalyRelationer(.height, .equal)
         case .width:
-            return LalyLayoutAttributor(.width, .equal)
+            return LalyRelationer(.width, .equal)
         }
     }
     
