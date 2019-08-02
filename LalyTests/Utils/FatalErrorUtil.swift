@@ -13,9 +13,10 @@ import Foundation
 // overrides Swift global `fatalError`
 public func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
     FatalErrorUtil.fatalErrorClosure(message(), file, line)
-    unreachable()
+  //  unreachable()
 }
 
+// FIXME: Do something
 /// This is a `noreturn` function that pauses forever
 public func unreachable() -> Never {
     repeat {

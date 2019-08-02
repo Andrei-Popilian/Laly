@@ -10,74 +10,179 @@ import UIKit
 
 public extension LalyLayout  {
     
-    //prediction.laly.size(.height(>=10))
+    /**
+     Used to create a size constraint to self with a variable size
+     Usage e.g: "someView.laly.size(.width(>=200))"
+     
+     - Parameters:
+        - type: The size type and a constant addition operation like:  ">=Value" or "<=Value"
+     
+     - Returns: An activated size to self constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
     func size(_ type: LayoutOperationSize) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type)
     }
     
-    //prediction.laly.size(.height(10))
+    /**
+     Used to create a size constraint to self with a constant size
+     Usage e.g: "someView.laly.size(.width(200))"
+     
+     - Parameters:
+        - type: The size type and a constant addition
+     
+     - Returns: An activated size to self constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
     func size(_ type: LayoutConstantSize) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type)
     }
     
-    //prediction.laly.size(.height(>=10), .width(>=10))
+    /**
+     Used to create multiple size constraints to self with variable sizes
+     Usage e.g: "someView.laly.size(.height(>=10), .width(<=10))"
+     
+     - Parameters:
+        - types: The size types enumerated having a constant addition operation like: ">=Value" or "<=Value"
+     
+     - Returns: A list of activated sizes to self constraints
+     - Note: Use "deactivated()" function if the list of constraints is required to be deactivated
+     */
     @discardableResult
-    func size(_ dimensionTypes: LayoutOperationSize...) -> [NSLayoutConstraint] {
-        dimensionTypes.checkForDuplicates()
-        return dimensionTypes.map { size($0) }
+    func size(_ types: LayoutOperationSize...) -> [NSLayoutConstraint] {
+        types.checkForDuplicates()
+        return types.map { size($0) }
     }
     
-    //prediction.laly.size(.height(10), .width(10))
-    @discardableResult
-    func size(_ dimensionTypes: LayoutConstantSize...) -> [NSLayoutConstraint] {
-        dimensionTypes.checkForDuplicates()
-        return dimensionTypes.map { size($0) }
+    /**
+     Used to create multiple size constraints to self
+     Usage e.g: "someView.laly.size(.height(10),  .width(10))"
+     
+     - Parameters:
+        - types: The size types enumerated having a constant addition
+     
+     - Returns: A list of activated sizes to self constraints
+     - Note: Use "deactivated()" function if the list of constraints is required to be deactivated
+     */    @discardableResult
+    func size(_ types: LayoutConstantSize...) -> [NSLayoutConstraint] {
+        types.checkForDuplicates()
+        return types.map { size($0) }
     }
     
-    //prediction.laly.size(of: imageView, on: .width)
+    /**
+     Used to create a size constraint equal the same size of another UIComponent
+     Usage e.g: "someView.laly.size(of: imageView, on: .width)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - type: The size type
+     
+     - Returns: An activated size to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, on type: LayoutSize) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type, of: superView)
+    func size(of relationView: Constraintable, on type: LayoutSize) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: relationView)
     }
     
-    //prediction.laly.size(of: imageView, relation: (.height, to: .width))
+    /**
+     Used to create a size constraint equal the another size type of other UIComponent
+     Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .width))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.height to: .width), being read as my height is equal to other UIComponent's width
+     
+     - Returns: An activated size to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, relation type: (LayoutSize, to: LayoutSize)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
+    func size(of relationView: Constraintable, relation type: (LayoutSize, to: LayoutSize)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
     
-    //prediction.laly.size(of: imageView, relation: (.height, to: .height(10)))
-    //prediction.laly.size(of: imageView, relation: (.height, to: .heightMuliply(10)))
+    /**
+     Used to create a size constraint equal the another size type of other UIComponent + additionl constant or multiplier
+     Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .heightBy(10)))"
+     Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .heightMuliply(10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.height to: .widthBy(10)), being read as my height is equal to width + 10 pixels of other UIComponent
+     
+     - Returns: An activated size to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, relation type: (LayoutSize, to: DetailedLayoutSize)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
+    func size(of relationView: Constraintable, relation type: (LayoutSize, to: DetailedLayoutSize)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
     
-    //prediction.laly.size(of: imageview, relation: (.height, to: .height(>=10)))
-    //prediction.laly.size(of: imageview, relation: (.height, to: .heightMultiply(>=10)))
+    /**
+     Used to create a size constraint equal the another size type of other UIComponent + additional constant or multiplier with operations
+     Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .height(>=10)))"
+     Usage e.g: "someView.laly.size(of: imageView, relation: (.width, to: .heightMuliply(<=10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.height to: .width(>=10)), being read as my height is greaterOrEqual to width + 10 pixels of other UIComponent
+     
+     - Returns: An activated size to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, relation type: (LayoutSize, to: DetailedOperationLayoutSize)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: superView)
+    func size(of relationView: Constraintable, relation type: (LayoutSize, to: DetailedOperationLayoutSize)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
     
-    //prediction.laly.size(of: imageView, relations: (.height, to: height(10)), (.width, to: .width(15)))
+    /**
+     Used to create  multiple constraints equal the another size type of other UIComponent + additional constant or multiplier
+     Usage e.g: "someView.laly.size(of: imageView, relations: (.height, to: height(10)), (.width, to: .width(15)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: multiple enumerated relations between UIComponents, e.g  (.height, to: height(10)), (.width, to: .width(15))),  being read as my height is equal to height + 10 pixels of other UIComponent and my width is equal to width + 15 or other
+     
+     - Returns: An activated list of size to another UIComponent constraints
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedLayoutSize)...) -> [NSLayoutConstraint] {
-        return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
+    func size(of relationView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedLayoutSize)...) -> [NSLayoutConstraint] {
+        return layoutRelations.map { size(of: relationView, relation: ($0.0, to: $0.to)) }
     }
     
-    //prediction.laly.size(to: imageView)
+    /**
+     Used to create multiple constraints in order to have the same size as relationView UIComponent
+     Usage e.g: "someView.laly.size(to: imageView)
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+     
+     - Returns: An activated list of constraints to relationView UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable) -> [NSLayoutConstraint] {
-        size(of: superView, relations: (.width, to: .widthBy(0)), (.height, to: .heightBy(0)))
+    func size(of relationView: Constraintable) -> [NSLayoutConstraint] {
+        size(of: relationView, relations: (.width, to: .widthBy(0)), (.height, to: .heightBy(0)))
     }
     
     //prediction.laly.sizes(of: imageView, relations: (.height, to: height(>=10)), (.width, to: .width(<=15)))
+    /**
+     Used to create  multiple constraints equal the another size type of other UIComponent + additional constant or multiplier with operations
+     Usage e.g: "someView.laly.size(of: imageView, relations: (.height, to: height(>=10)), (.width, to: .width(<=15)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: multiple enumerated relations between UIComponents, e.g  (.height, to: height(>=10)), (.width, to: .width(<=15))),  being read as my height is greaterThanOrEqual to height + 10 pixels of other UIComponent and my width is lessThanOrEqual to width + 15 or other
+     
+     - Returns: An activated list of size to another UIComponent constraints
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func size(of superView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedOperationLayoutSize)...) -> [NSLayoutConstraint] {
-        return layoutRelations.map { size(of: superView, relation: ($0.0, to: $0.to)) }
+    func size(of relationView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedOperationLayoutSize)...) -> [NSLayoutConstraint] {
+        return layoutRelations.map { size(of: relationView, relation: ($0.0, to: $0.to)) }
     }
 }
 

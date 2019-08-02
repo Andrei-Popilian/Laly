@@ -21,7 +21,7 @@ class EdgeTests: XCTestCase {
         mainView.frame = CGRect(origin: CGPoint(x: 10, y: 5), size: CGSize(width: 20, height: 30))
     }
     
-    func test_defaultEdges_toSuperView() {
+    func test_defaultEdges_torelationView() {
         let constraints = v.laly.edges(to: mainView)
         mainView.layoutIfNeeded()
         
@@ -32,35 +32,35 @@ class EdgeTests: XCTestCase {
         XCTAssertEqual(v.bounds.origin.x, mainView.bounds.origin.y, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultTopEdge_toSuperView() {
+    func test_defaultTopEdge_torelationView() {
         v.laly.edge(to: mainView, of: .top)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultBotEdge_toSuperView() {
+    func test_defaultBotEdge_torelationView() {
         v.laly.edge(to: mainView, of: .bot)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.height, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultLeadingEdge_toSuperView() {
+    func test_defaultLeadingEdge_torelationView() {
         v.laly.edge(to: mainView, of: .lead)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultTrailingEdge_toSuperView() {
+    func test_defaultTrailingEdge_torelationView() {
         v.laly.edge(to: mainView, of: .trail)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.width, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultLeadAndTrailingEdge_toSuperView() {
+    func test_defaultLeadAndTrailingEdge_torelationView() {
         v.laly.edges(to: mainView, of: .lead, .trail)
         mainView.layoutIfNeeded()
         
@@ -68,7 +68,7 @@ class EdgeTests: XCTestCase {
         XCTAssertEqual(v.frame.width, mainView.bounds.width, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_defaultLeadTrailingAndTopEdge_toSuperView() {
+    func test_defaultLeadTrailingAndTopEdge_torelationView() {
         v.laly.edges(to: mainView, of: .lead, .trail, .top)
         mainView.layoutIfNeeded()
         
@@ -78,7 +78,7 @@ class EdgeTests: XCTestCase {
     }
     
     //MARK: - Constraints with Constants
-    func test_edgesWithConstant_toSuperView() {
+    func test_edgesWithConstant_torelationView() {
         let constraints = v.laly.edges(to: mainView, ofIdentation: 10)
         mainView.layoutIfNeeded()
         
@@ -89,35 +89,35 @@ class EdgeTests: XCTestCase {
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_topWithConstant_toSuperView() {
+    func test_topWithConstant_torelationView() {
         v.laly.edge(to: mainView, of: .topBy(10))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_botWithConstant_toSuperView() {
+    func test_botWithConstant_torelationView() {
         v.laly.edge(to: mainView, of: .botBy(10))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.height + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_LeadingWithConstant_toSuperView() {
+    func test_LeadingWithConstant_torelationView() {
         v.laly.edge(to: mainView, of: .leadBy(10))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_TrailingWithConstant_toSuperView() {
+    func test_TrailingWithConstant_torelationView() {
         v.laly.edge(to: mainView, of: .trailBy(-10))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.width - 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_leadAndTrailingWithConstant_toSuperView() {
+    func test_leadAndTrailingWithConstant_torelationView() {
         v.laly.edges(to: mainView, of: .leadBy(10), .trailBy(-10))
         mainView.layoutIfNeeded()
         
@@ -126,35 +126,35 @@ class EdgeTests: XCTestCase {
     }
     
     //MARK: - Constraints with Constants
-    func test_topWithMultiply_toSuperView() {
+    func test_topWithMultiply_torelationView() {
         v.laly.edge(to: mainView, of: .topMultiply(2))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y * 2, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_botWithMultiply_toSuperView() {
+    func test_botWithMultiply_torelationView() {
         v.laly.edge(to: mainView, of: .botMultiply(2))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.height * 2, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_LeadingWithMultiply_toSuperView() {
+    func test_LeadingWithMultiply_torelationView() {
         v.laly.edge(to: mainView, of: .leadMultiply(2))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x * 2, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_TrailingWithMultiply_toSuperView() {
+    func test_TrailingWithMultiply_torelationView() {
         v.laly.edge(to: mainView, of: .trailMultiply(0.5))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.width / 2, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_leadAndTrailingWithMultiply_toSuperView() {
+    func test_leadAndTrailingWithMultiply_torelationView() {
         v.laly.edges(to: mainView, of: .leadMultiply(2), .trailMultiply(0.5))
         mainView.layoutIfNeeded()
         
@@ -162,35 +162,35 @@ class EdgeTests: XCTestCase {
         XCTAssertEqual(v.frame.width, mainView.bounds.width - 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_leadToLeadByRelation_ToSuperView() {
+    func test_leadToLeadByRelation_TorelationView() {
         v.laly.edge(to: mainView, relation: (.lead, to: .leadBy(5)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x + 5, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_leadToTrailByRelation_ToSuperView() {
+    func test_leadToTrailByRelation_TorelationView() {
         v.laly.edge(to: mainView, relation: (.lead, to: .trailBy(5)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.x, mainView.bounds.origin.x + mainView.bounds.width + 5, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_topToTopByRelation_ToSuperView() {
+    func test_topToTopByRelation_TorelationView() {
         v.laly.edge(to: mainView, relation: (.top, to: .topBy(10)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_topToBotByRelation_toSuperView() {
+    func test_topToBotByRelation_torelationView() {
         v.laly.edge(to: mainView, relation: (.top, to: .botBy(-10)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.origin.y, mainView.bounds.origin.y + mainView.bounds.height - 10, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_topToTopByRelation_andBotToBotByRelation_toSuperView() {
+    func test_topToTopByRelation_andBotToBotByRelation_torelationView() {
         v.laly.edges(to: mainView, relations: (.top, to: .topBy(10)), (.bot, to: .botBy(-10)))
         mainView.layoutIfNeeded()
         

@@ -10,26 +10,72 @@ import UIKit
 
 public extension LalyLayout  {
     
+    /**
+     Used to create a center constraint to another UIComponent.
+     Usage e.g: "someView.laly.center(to: otherView, on: .x(10))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - type:  the center type can be X or Y with optional constants additions
+     
+     - Returns: An activated centered constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func center(to superView: Constraintable, on type: LayoutConstantCenter) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type, of: superView)
+    func center(to relationView: Constraintable, on type: LayoutConstantCenter) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: relationView)
     }
     
+    /**
+     Used to create a center constraint to another UIComponent.
+     Usage e.g: "someView.laly.center(to: otherView, on: .x)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - type:  the the center type can be X or Y
+     
+     - Returns: An activated centered constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func center(to superView: Constraintable, on type: LayoutCenter) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type, of: superView)
+    func center(to relationView: Constraintable, on type: LayoutCenter) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: relationView)
     }
     
+    /**
+     Used to create a center constraint to another UIComponent.
+     Usage e.g: "someView.laly.center(to: otherView, on: .x, .y)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - types:  requires 1 on more enumerated types as X or Y
+     
+     - Returns: A list of activated centered constraints
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     - Warning: Adding duplicated types will result in to a fatal error specifying the duplication
+     */
     @discardableResult
-    func center(to superView: Constraintable, on types: LayoutCenter...) -> [NSLayoutConstraint] {
+    func center(to relationView: Constraintable, on types: LayoutCenter...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { center(to: superView ,on: $0) }
+        return types.map { center(to: relationView ,on: $0) }
     }
     
+    /**
+     Used to create a center constraint to another UIComponent.
+     Usage e.g: "someView.laly.center(to: otherView, on: .x(5),  .y(10))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - types:  requires 1 on more enumerated types as X or Y with optional constants
+     
+     - Returns: A list of activated centered constraints
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     - Warning: Adding duplicated types will result in to a fatal error specifying the duplication
+     */
     @discardableResult
-    func center(to superView: Constraintable, on types: LayoutConstantCenter...) -> [NSLayoutConstraint] {
+    func center(to relationView: Constraintable, on types: LayoutConstantCenter...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { center(to: superView ,on: $0) }
+        return types.map { center(to: relationView ,on: $0) }
     }
 }
 

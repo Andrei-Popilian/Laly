@@ -10,87 +10,219 @@ import UIKit
 
 public extension LalyLayout  {
     
-    //prediction.laly.edge(to: superView, of: .botBy(10))
-    //prediction.laly.edge(to: superView, of: .bot)
+    /**
+     Used to create an edge constraint equal the same edge of other UIComponent
+     Usage e.g: "someView.laly.edge(to: relationView, of: .botBy(10))"
+     Usage e.g: "someView.laly.edge(to: relationView, of: .bot)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - type: The edge type
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, of type: ConstraintType) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type, of: superView)
+    func edge(to relationView: Constraintable, of type: ConstraintType) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: relationView)
     }
     
-    //prediction.laly.edgesTo(imageView: of: .lead(10), .trail())
+    /**
+     Used to create a list of edge constraints equal the same edges of other UIComponent
+     Usage e.g: "someView.laly.edges(to: imageView: of: .leadBy(10), .trail)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - types: The edge types enumerated
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     - Warning: Adding duplicated types will result in to a fatal error specifying the duplication
+     */
     @discardableResult
-    func edges(to superView: Constraintable, of types: ConstraintType...) -> [NSLayoutConstraint] {
+    func edges(to relationView: Constraintable, of types: ConstraintType...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { edge(to: superView, of: $0) }
+        return types.map { edge(to: relationView, of: $0) }
     }
     
-    //prediction.laly.edge(to: superView, of: .bot(>=10))
-    //prediction.laly.edge(to: superView, of: .widthMultiply(<=0.2))
+    /**
+     Used to create an edge constraint equal the same edge of other UIComponent by operation
+     Usage e.g: "someView.laly.edges(to: imageView: of: .bot(>=10))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - type: The edge type
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, of type: ConstraintOperationType) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: type, of: superView)
+    func edge(to relationView: Constraintable, of type: ConstraintOperationType) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: type, of: relationView)
     }
     
-    //prediction.laly.edgesTo(imageView: of: .lead(>=10), .trail())
+    /**
+     Used to create a list of edge constraints equal the same edges of other UIComponent operations
+     Usage e.g: "someView.laly.edgesTo(imageView: of: .lead(>=10), .trail())"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - types: The edge types enumerated e.g .eedgesTo(imageView: of: .lead(>=10), .trail()), is being read as myView's lead is greaterThanOrEqual to imageView's lead + 10 and myView's trail is equal to imageView's trail
+     
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     - Warning: Adding duplicated types will result in to a fatal error specifying the duplication
+     */
     @discardableResult
-    func edges(to superView: Constraintable, of types: ConstraintOperationType...) -> [NSLayoutConstraint] {
+    func edges(to relationView: Constraintable, of types: ConstraintOperationType...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { edge(to: superView, of: $0) }
+        return types.map { edge(to: relationView, of: $0) }
     }
     
-    //prediction.laly.edges(to: imageView, ofIdentation: 10)
-    //preddiction.laly.edges(to: imageView)
+    /**
+     Used to create a list of edge constraints equal the same edges of other UIComponent  plus an optional identation
+     Usage e.g: "someView.laly.edges(to: imageView, ofIdentation: 10)"
+     Usage e.g: "someView.laly.edges(to: imageView)"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - ofIdentation: by default is 0, the indentation ammount for each edge (4 edges), will be calculated as follows: top + ide, bot - ide, lead + ide, trail - ide
+     
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     - Warning: Adding duplicated types will result in to a fatal error specifying the duplication
+     */
     @discardableResult
-    func edges(to superView: Constraintable, ofIdentation const: CGFloat = 0) -> [NSLayoutConstraint] {
-        edges(to: superView, of: .leadBy(const), .trailBy(-const), .botBy(-const), .topBy(const))
+    func edges(to relationView: Constraintable, ofIdentation const: CGFloat = 0) -> [NSLayoutConstraint] {
+        edges(to: relationView, of: .leadBy(const), .trailBy(-const), .botBy(-const), .topBy(const))
     }
     
-    //prediction.laly.edge(to: photoImageView, relation: (.top, to: .bot(10)))
+    /**
+     Used to create an edge constraint equal the another edge type of other UIComponent + additional constant
+     Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.top, to: .botBy(10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.top to: .botBy(10)), being read as my top is equal to bot + 10 pixels of other UIComponent
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYAxis)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
+    func edge(to relationView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYAxis)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
     
-    //prediction.laly.edges(to: imageView, relations: (.top, to: .top(-10)), (.bot, to: bot(-10)))
+    /**
+     Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant
+     Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.top, to: .topBy(-10)), (.bot, to: botBy(-10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: The relations between UIComponents e.g  (.top, to: .topBy(-10)), (.bot, to: botBy(-10))), being read as my top is equal to top - 10 pixels of other UIComponent and my bot is equal to bot - 10 pixels of other UIComponent
+     
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edges(to superView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYAxis)...) -> [NSLayoutConstraint] {
-        return relations.map { edge(to: superView, relation: ($0.0, to: $0.to)) }
+    func edges(to relationView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYAxis)...) -> [NSLayoutConstraint] {
+        return relations.map { edge(to: relationView, relation: ($0.0, to: $0.to)) }
     }
     
-    //prediction.laly.edge(to: photoImageView, relation: (.top, to: .bot(<=10)))
+    /**
+     Used to create an edge constraint equal the another edge type of other UIComponent + additional constant operations
+     Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.top, to: .botBy(<=10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.top to: .botBy(10)), being read as my top is lessThanOrEqual to bot + 10 pixels of other UIComponent
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYOperationAxis)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
+    func edge(to relationView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYOperationAxis)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
     
-    //prediction.laly.edges(to: imageView, relations: (.top, to: .top(>=-10)), (.bot, to: bot(-10)))
+    /**
+     Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant operations
+     Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.top, to: .topBy(-10)), (.bot, to: botBy(-10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: The relations between UIComponents e.g  (.top, to: .topBy(<=10)), (.bot, to: botBy(>=10))), being read as my top is lessThanOrEqual to top + 10 pixels of other UIComponent and my bot is greaterThanOrEqual to bot + 10 pixels of other UIComponent
+     
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edges(to superView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint]  {
-        return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
+    func edges(to relationView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint]  {
+        return relations.map { edge(to: relationView, relation: ($0.0, to: $0.1)) }
     }
     
-    //prediction.laly.edge(to: imageView, relation: (.lead, to: lead(10)))
+    /**
+     Used to create an edge constraint equal the another edge type of other UIComponent + additional constant
+     Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.lead, to: .leadBy(10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.lead to: .leadBy(10)), being read as my lead is equal to lead + 10 pixels of other UIComponent
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXAxis)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
+    func edge(to relationView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXAxis)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
     
-    //prediction.laly.edges(to: imageView, relations: (.lead, to: .lead(-10)), (.trail, to: .trail(-10)))
+    /**
+     Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant
+     Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.lead, to: .leadBy(10)), (.trail, to: trailBy(-10)))"
+
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: The relations between UIComponents e.g   (.lead, to: .leadBy(10)), (.trail, to: trailBy(-10)))" being read as my lead is equal to lead + 10 pixels of other UIComponent and my trail is equal to trail - 10 pixels of other UIComponent
+
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edges(to superView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXAxis)...) -> [NSLayoutConstraint] {
-        return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
+    func edges(to relationView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXAxis)...) -> [NSLayoutConstraint] {
+        return relations.map { edge(to: relationView, relation: ($0.0, to: $0.1)) }
     }
     
-    //prediction.laly.edge(to: imageView, relation: (.lead, to: lead(>=10)))
+    /**
+     Used to create an edge constraint equal the another edge type of other UIComponent + additional constant operation
+     Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.lead, to: .leadBy(>=10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relation: The relation between UIComponents e.g  (.lead to: .leadBy(>=10)), being read as my lead is greaterThanOrEqual to lead + 10 pixels of other UIComponent
+     
+     - Returns: An activated edge to another UIComponent constraint
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edge(to superView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXOperationAxis)) -> NSLayoutConstraint {
-        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: superView)
+    func edge(to relationView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXOperationAxis)) -> NSLayoutConstraint {
+        constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
     
-    //prediction.laly.edges(to: imageView, relations: (.lead, to: .lead(-10)), (.trail, to: .trail(>=-10)))
+    /**
+     Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant operations
+     Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.lead, to: .leadBy(>=10)), (.trail, to: trailBy(-10)))"
+     
+     - Parameters:
+        - relationView: A UIView or UILayoutGuide component used as a constraint relation
+        - relations: The relations between UIComponents e.g   (.lead, to: .leadBy(>=10)), (.trail, to: trailBy(-10)))" being read as my lead is greaterThanOrEqual to lead + 10 pixels of other UIComponent and my trail is equal to trail - 10 pixels of other UIComponent
+     
+     - Returns: An activated list of edge constraints to another UIComponent
+     - Note: Use "deactivated()" function if the constraint is required to be deactivated
+     */
     @discardableResult
-    func edges(to superView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXOperationAxis)...) -> [NSLayoutConstraint] {
-        return relations.map { edge(to: superView, relation: ($0.0, to: $0.1)) }
+    func edges(to relationView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXOperationAxis)...) -> [NSLayoutConstraint] {
+        return relations.map { edge(to: relationView, relation: ($0.0, to: $0.1)) }
     }
 }
 
@@ -216,11 +348,6 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
     case widthMultiply(_ value: CGFloat)
     case heightMultiply(_ value: CGFloat)
     
-    
-    //    public static var allCases: [ConstraintType] {
-    //        return [.top, .bot, .lead, .trail, .width, .height, .topBy(0), .botBy(0), .leadBy(0), .trailBy(0), .widthBy(0), .heightBy(0), topMultiply(0), botMultiply(0), leadMultiply(0), trailMultiply(0), widthMultiply(0),  .heightMultiply(0)]
-    //    }
-    
     private var rawValue: Int {
         switch self {
         case .top, .topBy, .topMultiply:
@@ -237,19 +364,6 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
             return 5
         }
     }
-    
-    #warning("Think about this")
-    //    private var rawValue: Int {
-    //        let c = ConstraintType.allCases
-    //        for (i, e) in c.enumerated() {
-    //            if e.self == self {
-    //                return i
-    //            }
-    //        }
-    //        fatalError("Shouldn't be here")
-    //        return 1
-    //
-    //    }
     
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {

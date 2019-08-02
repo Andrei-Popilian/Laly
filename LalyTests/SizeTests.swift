@@ -51,21 +51,21 @@ class SizeTests: XCTestCase {
     }
     
     
-    func test_widthEqual_toSuperView() {
+    func test_widthEqual_torelationView() {
         v.laly.size(of: mainView, on: .width)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.width, mainView.frame.width, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightEqual_toSuperView() {
+    func test_heightEqual_torelationView() {
         v.laly.size(of: mainView, on: .height)
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.height, mainView.frame.height, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightAndWidthEqual_toSuperView() {
+    func test_heightAndWidthEqual_torelationView() {
         v.laly.size(of: mainView)
         mainView.layoutIfNeeded()
         
@@ -73,56 +73,56 @@ class SizeTests: XCTestCase {
         XCTAssertEqual(v.frame.height, mainView.frame.height, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightEqual_toSuperView_withConstant() {
+    func test_heightEqual_torelationView_withConstant() {
         v.laly.size(of: mainView, relation: (.height, to: .heightBy(50)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.height, mainView.frame.height + 50, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_widthEqual_toSuperView_withConstant() {
+    func test_widthEqual_torelationView_withConstant() {
         v.laly.size(of: mainView, relation: (.width, to: .widthBy(50)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.width, mainView.frame.width + 50, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightEqual_toSuperView_withMultiplier() {
+    func test_heightEqual_torelationView_withMultiplier() {
         v.laly.size(of: mainView, relation: (.height, to: .heightMultiply(50)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.height, mainView.frame.height * 50, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_widthEqual_toSuperView_withMultiplier() {
+    func test_widthEqual_torelationView_withMultiplier() {
         v.laly.size(of: mainView, relation: (.width, to: .widthMultiply(50)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.width, mainView.frame.width * 50, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightEqual_toWidth_ofSuperView() {
+    func test_heightEqual_toWidth_ofrelationView() {
         v.laly.size(of: mainView, relation: (.height, to: .widthBy(0)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.height, mainView.frame.width, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_widthEqual_toHeight_ofSuperView() {
+    func test_widthEqual_toHeight_ofrelationView() {
         v.laly.size(of: mainView, relation: (.width, to: .heightBy(0)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.width, mainView.frame.height, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_widthEqual_toHeight_plusConstant_ofSuperView() {
+    func test_widthEqual_toHeight_plusConstant_ofrelationView() {
         v.laly.size(of: mainView, relation: (.width, to: .heightBy(30)))
         mainView.layoutIfNeeded()
         
         XCTAssertEqual(v.frame.width, mainView.frame.height + 30, accuracy: CGFloat(Float.ulpOfOne))
     }
     
-    func test_heightEqual_toHeight_plusConstant_ofSuperView() {
+    func test_heightEqual_toHeight_plusConstant_ofrelationView() {
         v.laly.size(of: mainView, relation: (.height, to: .heightBy(30)))
         mainView.layoutIfNeeded()
         

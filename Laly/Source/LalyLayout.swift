@@ -16,9 +16,9 @@ public struct LalyLayout {
         self.layout = constrainableLayout
     }
     
-    internal func constraintWithAttributor(_ attributor: LalyRelationer, _ selfAttribute: NSLayoutConstraint.Attribute, _ superView: Constraintable? = nil) -> NSLayoutConstraint {
+    internal func constraintWithAttributor(_ attributor: LalyRelationer, _ selfAttribute: NSLayoutConstraint.Attribute, _ relationView: Constraintable? = nil) -> NSLayoutConstraint {
         
-        NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: superView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
+        NSLayoutConstraint(item: layout, attribute: selfAttribute, relatedBy: attributor.relation, toItem: relationView, attribute: attributor.attribute, multiplier: attributor.multiplier, constant: attributor.constant)
             .activated()
     }
 }
@@ -146,20 +146,20 @@ internal extension LalyLayout {
         return constraintWithAttributor(attributor, selfAttribute)
     }
     
-    func constraintBasedOnLayoutType(type: AtributoRelationable, of superView: Constraintable) -> NSLayoutConstraint {
+    func constraintBasedOnLayoutType(type: AtributoRelationable, of relationView: Constraintable) -> NSLayoutConstraint {
         
         let selfAttribute = type.getAttribute()
         let attributor = type.getAttributor()
         
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        return constraintWithAttributor(attributor, selfAttribute, relationView)
     }
     
-    func constraintBasedOnLayoutType(type: Attributable, toType: Relationable, of superView: Constraintable) -> NSLayoutConstraint {
+    func constraintBasedOnLayoutType(type: Attributable, toType: Relationable, of relationView: Constraintable) -> NSLayoutConstraint {
         
         let selfAttribute = type.getAttribute()
         let attributor = toType.getAttributor()
         
-        return constraintWithAttributor(attributor, selfAttribute, superView)
+        return constraintWithAttributor(attributor, selfAttribute, relationView)
     }
     
 }
