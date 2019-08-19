@@ -8,7 +8,9 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public protocol Constraintable {
+    
     
     var leadingAnchor: NSLayoutXAxisAnchor { get }
     
@@ -31,7 +33,9 @@ public protocol Constraintable {
     var centerYAnchor: NSLayoutYAxisAnchor { get }
 }
 
+@available(iOS 9.0, *)
 extension UILayoutGuide: Constraintable {}
 
+@available(iOS 9.0, *)
 extension UIView: Constraintable {}
 

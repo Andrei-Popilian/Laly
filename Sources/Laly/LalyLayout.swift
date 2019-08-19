@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public struct LalyLayout {
     
     let layout: Constraintable
@@ -81,6 +82,7 @@ public extension NSLayoutConstraint {
     }
 }
 
+@available(iOS 9.0, *)
 public extension UIView {
     
     var laly: LalyLayout {
@@ -89,6 +91,7 @@ public extension UIView {
     
 }
 
+@available(iOS 9.0, *)
 public extension UILayoutGuide {
     
     var laly: LalyLayout {
@@ -136,6 +139,7 @@ protocol Relationable {
     func getAttributor() -> LalyRelationer
 }
 
+@available(iOS 9.0, *)
 internal extension LalyLayout {
     
     func constraintBasedOnLayoutType(type: AtributoRelationable) -> NSLayoutConstraint {

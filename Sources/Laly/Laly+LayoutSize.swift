@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public extension LalyLayout  {
     
     /**
@@ -65,7 +66,8 @@ public extension LalyLayout  {
      
      - Returns: A list of activated sizes to self constraints
      - Note: Use "deactivated()" function if the list of constraints is required to be deactivated
-     */    @discardableResult
+     */
+    @discardableResult
     func size(_ types: LayoutConstantSize...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
         return types.map { size($0) }
