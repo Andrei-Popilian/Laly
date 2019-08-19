@@ -19,9 +19,10 @@ let package = Package(
     targets: [
         .target(
             name: "Laly",
-            dependencies: []),
+            path: "Sources")
         //.testTarget(
         //   name: "LalyTests",
         //   dependencies: ["Laly"]),
-    ]
+    ],
+    swiftLanguageVersions: [5]
 )
