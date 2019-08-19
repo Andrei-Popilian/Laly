@@ -45,11 +45,10 @@ class SizeTests: XCTestCase {
     }
     
     func test_avoidDuplicates_whenSetDefault_WidthAndHeight_shouldFatalError() {
-        #warning("Find a way to add FataErrorUtil only to Laly to be fully workable with SwiftPM")
-//        expectFatalError {
-//            self.v.laly.size(.width(50), .height(40), .width(20))
-//            self.mainView.layoutIfNeeded()
-//        }
+        expectFatalError {
+            self.v.laly.size(.width(50), .height(40), .width(20))
+            self.mainView.layoutIfNeeded()
+        }
     }
     
     

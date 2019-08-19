@@ -66,19 +66,16 @@ class CenterTests: XCTestCase {
     }
     
     func test_avoidDuplicatedCenters_withConstant_onrelationView_shouldFatalError() {
-        #warning("Find a way to add FataErrorUtil only to Laly to be fully workable with SwiftPM")
-//        expectFatalError {
-//            self.v.laly.center(to: self.mainView, on: .x(20), .y(20), .x(11))
-//            self.mainView.layoutIfNeeded()
-//        }
+        expectFatalError {
+            self.v.laly.center(to: self.mainView, on: .x(20), .y(20), .x(11))
+            self.mainView.layoutIfNeeded()
+        }
     }
     
     func test_avoidDuplicatedCenters_onrelationView_ShouldFataError() {
-        #warning("Find a way to add FataErrorUtil only to Laly to be fully workable with SwiftPM")
-
-//        expectFatalError {
-//            self.v.laly.center(to: self.mainView, on: .x, .y, .x)
-//            self.mainView.layoutIfNeeded()
-//        }
+        expectFatalError {
+            self.v.laly.center(to: self.mainView, on: .x, .y, .x)
+            self.mainView.layoutIfNeeded()
+        }
     }
 }

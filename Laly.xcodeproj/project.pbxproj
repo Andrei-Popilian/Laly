@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		17AE433422E9A253007382AD /* Laly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1732C15222E84B8F00A56D61 /* Laly.framework */; };
-		17D1E741230AD89900FCA160 /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E73F230AD88900FCA160 /* FatalErrorUtil.swift */; };
 		17D1E742230AD89900FCA160 /* Laly+Constraintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E735230AD87A00FCA160 /* Laly+Constraintable.swift */; };
 		17D1E743230AD89900FCA160 /* Laly+LayoutCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E737230AD87A00FCA160 /* Laly+LayoutCenter.swift */; };
 		17D1E744230AD89900FCA160 /* Laly+LayoutEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E736230AD87A00FCA160 /* Laly+LayoutEdge.swift */; };
@@ -17,8 +16,8 @@
 		17D1E74A230AD8B100FCA160 /* EdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E747230AD8B100FCA160 /* EdgeTests.swift */; };
 		17D1E74B230AD8B100FCA160 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E748230AD8B100FCA160 /* CenterTests.swift */; };
 		17D1E74C230AD8B100FCA160 /* SizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E749230AD8B100FCA160 /* SizeTests.swift */; };
-		17D1E74E230AD8BD00FCA160 /* XCTestCase+FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1E74D230AD8BD00FCA160 /* XCTestCase+FatalError.swift */; };
-		17D1E753230AD98100FCA160 /* TestsInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17D1E752230AD98100FCA160 /* TestsInfo.plist */; };
+		17F8C53E230AE7C400024C25 /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8C53D230AE7C400024C25 /* FatalErrorUtil.swift */; };
+		17F8C540230AE7D000024C25 /* XCTestCase+FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F8C53F230AE7D000024C25 /* XCTestCase+FatalError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +40,12 @@
 		17D1E737230AD87A00FCA160 /* Laly+LayoutCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Laly+LayoutCenter.swift"; path = "Sources/Laly/Laly+LayoutCenter.swift"; sourceTree = "<group>"; };
 		17D1E738230AD87A00FCA160 /* Laly+LayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Laly+LayoutSize.swift"; path = "Sources/Laly/Laly+LayoutSize.swift"; sourceTree = "<group>"; };
 		17D1E739230AD87A00FCA160 /* LalyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LalyLayout.swift; path = Sources/Laly/LalyLayout.swift; sourceTree = "<group>"; };
-		17D1E73F230AD88900FCA160 /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FatalErrorUtil.swift; path = ../Tests/LalyTests/Utils/FatalErrorUtil.swift; sourceTree = "<group>"; };
 		17D1E747230AD8B100FCA160 /* EdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EdgeTests.swift; path = Tests/LalyTests/EdgeTests.swift; sourceTree = "<group>"; };
 		17D1E748230AD8B100FCA160 /* CenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CenterTests.swift; path = Tests/LalyTests/CenterTests.swift; sourceTree = "<group>"; };
 		17D1E749230AD8B100FCA160 /* SizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SizeTests.swift; path = Tests/LalyTests/SizeTests.swift; sourceTree = "<group>"; };
-		17D1E74D230AD8BD00FCA160 /* XCTestCase+FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "XCTestCase+FatalError.swift"; path = "../Tests/LalyTests/Utils/XCTestCase+FatalError.swift"; sourceTree = "<group>"; };
 		17D1E752230AD98100FCA160 /* TestsInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
+		17F8C53D230AE7C400024C25 /* FatalErrorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FatalErrorUtil.swift; path = Tests/LalyTests/Utils/FatalErrorUtil.swift; sourceTree = SOURCE_ROOT; };
+		17F8C53F230AE7D000024C25 /* XCTestCase+FatalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+FatalError.swift"; path = "Tests/LalyTests/Utils/XCTestCase+FatalError.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +70,8 @@
 		1732C14822E84B8F00A56D61 = {
 			isa = PBXGroup;
 			children = (
-				17D1E750230AD8E600FCA160 /* LalyTests */,
 				17D1E74F230AD8C900FCA160 /* Laly */,
+				17D1E750230AD8E600FCA160 /* LalyTests */,
 				17927AFE230AD798001DB56B /* Info.plist */,
 				17927AFD230AD798001DB56B /* Laly.h */,
 				1732C15322E84B8F00A56D61 /* Products */,
@@ -107,18 +106,18 @@
 				17D1E748230AD8B100FCA160 /* CenterTests.swift */,
 				17D1E747230AD8B100FCA160 /* EdgeTests.swift */,
 				17D1E749230AD8B100FCA160 /* SizeTests.swift */,
-				17D1E751230AD8F700FCA160 /* Units */,
+				17D1E751230AD8F700FCA160 /* Utils */,
 			);
 			name = LalyTests;
 			sourceTree = "<group>";
 		};
-		17D1E751230AD8F700FCA160 /* Units */ = {
+		17D1E751230AD8F700FCA160 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				17D1E74D230AD8BD00FCA160 /* XCTestCase+FatalError.swift */,
-				17D1E73F230AD88900FCA160 /* FatalErrorUtil.swift */,
+				17F8C53F230AE7D000024C25 /* XCTestCase+FatalError.swift */,
+				17F8C53D230AE7C400024C25 /* FatalErrorUtil.swift */,
 			);
-			path = Units;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +219,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D1E753230AD98100FCA160 /* TestsInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,8 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D1E741230AD89900FCA160 /* FatalErrorUtil.swift in Sources */,
 				17D1E742230AD89900FCA160 /* Laly+Constraintable.swift in Sources */,
+				17F8C53E230AE7C400024C25 /* FatalErrorUtil.swift in Sources */,
 				17D1E743230AD89900FCA160 /* Laly+LayoutCenter.swift in Sources */,
 				17D1E744230AD89900FCA160 /* Laly+LayoutEdge.swift in Sources */,
 				17D1E745230AD89900FCA160 /* Laly+LayoutSize.swift in Sources */,
@@ -244,9 +242,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D1E74E230AD8BD00FCA160 /* XCTestCase+FatalError.swift in Sources */,
 				17D1E74A230AD8B100FCA160 /* EdgeTests.swift in Sources */,
 				17D1E74B230AD8B100FCA160 /* CenterTests.swift in Sources */,
+				17F8C540230AE7D000024C25 /* XCTestCase+FatalError.swift in Sources */,
 				17D1E74C230AD8B100FCA160 /* SizeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,12 +386,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 28T6MHF533;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1.2;
+				DYLIB_CURRENT_VERSION = 1.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -403,10 +401,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.Laly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -421,12 +420,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 28T6MHF533;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1.2;
+				DYLIB_CURRENT_VERSION = 1.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -436,10 +435,11 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.Laly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -452,9 +452,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28T6MHF533;
-				INFOPLIST_FILE = "$(SRCROOT)/TestsInfo.plist";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,6 +462,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.LalyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,9 +473,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28T6MHF533;
-				INFOPLIST_FILE = "$(SRCROOT)/TestsInfo.plist";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/TestsInfo.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,6 +483,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.LalyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
