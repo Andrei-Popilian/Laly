@@ -6,7 +6,7 @@ It's easy to learn, read and write and debug.
 
 ### Table of Contents
  1. [Setup](#setup)
- 1. [Problems, Suggestions, Pull Requests?](#problems-suggestions-pull-requests)
+ 2. [Problems, Suggestions, Pull Requests?](#problems-suggestions-pull-requests)
 
 ## Setup
 ### Compatibility
@@ -25,8 +25,21 @@ The current release of Laly supports the following versions of iOS and OS X:
   github "Andrei-Popilian/Laly"
   ```
 
-1. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
-1. Import the Laly framework/module.
+2. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
+
+3. Import the Laly framework/module.
+  * Swift: `import Laly`
+
+# 
+
+### Using [Swift Package Manager](https://swift.org/package-manager)
+1. Xcode -> File -> Swift Packages -> Add Package Dependecy...
+
+2. Add package dependecy URL: `https://github.com/Andrei-Popilian/Laly.git`
+
+3. Use version 1.3.0 +
+
+4. Import the Laly framework/module.
   * Swift: `import Laly`
 
 That's it - now go write some beautiful Auto Layout code!
