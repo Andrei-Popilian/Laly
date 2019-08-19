@@ -2,7 +2,7 @@
 //  Laly.h
 //  Laly
 //
-//  Created by Beta Catalina on 7/24/19.
+//  Created by Andrei Popilian on 7/24/19.
 //  Copyright © 2019 Accenture. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  Laly+Constraintable.swift
 //  Laly
 //
-//  Created by Beta Catalina on 7/19/19.
+//  Created by Andrei Popilian on 7/19/19.
 //  Copyright © 2019 MOBGEN. All rights reserved.
 //
 

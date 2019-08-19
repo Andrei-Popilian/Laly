@@ -7,15 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17301CEF22EAE5E300B331F8 /* EdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17301CEE22EAE5E300B331F8 /* EdgeTests.swift */; };
 		1732C15722E84B8F00A56D61 /* Laly.h in Headers */ = {isa = PBXBuildFile; fileRef = 1732C15522E84B8F00A56D61 /* Laly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1732C16322E84BE300A56D61 /* Laly+LayoutEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */; };
 		1732C16422E84BE300A56D61 /* Laly+Constraintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C15F22E84BE300A56D61 /* Laly+Constraintable.swift */; };
 		1732C16522E84BE300A56D61 /* Laly+LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16022E84BE300A56D61 /* Laly+LayoutSize.swift */; };
 		1732C16622E84BE300A56D61 /* LalyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16122E84BE300A56D61 /* LalyLayout.swift */; };
 		1732C16722E84BE300A56D61 /* Laly+LayoutCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */; };
+		17AE433422E9A253007382AD /* Laly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1732C15222E84B8F00A56D61 /* Laly.framework */; };
+		17AE433B22E9A7C1007382AD /* SizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433A22E9A7C1007382AD /* SizeTests.swift */; };
+		17AE433D22E9A7DB007382AD /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433C22E9A7DB007382AD /* CenterTests.swift */; };
+		17AE434222E9B00D007382AD /* XCTestCase+FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE434122E9B00D007382AD /* XCTestCase+FatalError.swift */; };
+		17AE434322E9B409007382AD /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE433F22E9AFAB007382AD /* FatalErrorUtil.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		17AE433522E9A253007382AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1732C14922E84B8F00A56D61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1732C15122E84B8F00A56D61;
+			remoteInfo = Laly;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		17301CEE22EAE5E300B331F8 /* EdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTests.swift; sourceTree = "<group>"; };
 		1732C15222E84B8F00A56D61 /* Laly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Laly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1732C15522E84B8F00A56D61 /* Laly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Laly.h; sourceTree = "<group>"; };
 		1732C15622E84B8F00A56D61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -24,6 +41,12 @@
 		1732C16022E84BE300A56D61 /* Laly+LayoutSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Laly+LayoutSize.swift"; sourceTree = "<group>"; };
 		1732C16122E84BE300A56D61 /* LalyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LalyLayout.swift; sourceTree = "<group>"; };
 		1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Laly+LayoutCenter.swift"; sourceTree = "<group>"; };
+		17AE432F22E9A253007382AD /* LalyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LalyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17AE433322E9A253007382AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17AE433A22E9A7C1007382AD /* SizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeTests.swift; sourceTree = "<group>"; };
+		17AE433C22E9A7DB007382AD /* CenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTests.swift; sourceTree = "<group>"; };
+		17AE433F22E9AFAB007382AD /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
+		17AE434122E9B00D007382AD /* XCTestCase+FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FatalError.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +57,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		17AE432C22E9A253007382AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17AE433422E9A253007382AD /* Laly.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -41,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				1732C15422E84B8F00A56D61 /* Laly */,
+				17AE433022E9A253007382AD /* LalyTests */,
 				1732C15322E84B8F00A56D61 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				1732C15222E84B8F00A56D61 /* Laly.framework */,
+				17AE432F22E9A253007382AD /* LalyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,13 +99,34 @@
 			children = (
 				1732C15F22E84BE300A56D61 /* Laly+Constraintable.swift */,
 				1732C16222E84BE300A56D61 /* Laly+LayoutCenter.swift */,
-				1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */,
 				1732C16022E84BE300A56D61 /* Laly+LayoutSize.swift */,
+				1732C15E22E84BE300A56D61 /* Laly+LayoutEdge.swift */,
 				1732C16122E84BE300A56D61 /* LalyLayout.swift */,
 				1732C15522E84B8F00A56D61 /* Laly.h */,
 				1732C15622E84B8F00A56D61 /* Info.plist */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		17AE433022E9A253007382AD /* LalyTests */ = {
+			isa = PBXGroup;
+			children = (
+				17AE433E22E9AF9E007382AD /* Utils */,
+				17AE433C22E9A7DB007382AD /* CenterTests.swift */,
+				17AE433A22E9A7C1007382AD /* SizeTests.swift */,
+				17301CEE22EAE5E300B331F8 /* EdgeTests.swift */,
+				17AE433322E9A253007382AD /* Info.plist */,
+			);
+			path = LalyTests;
+			sourceTree = "<group>";
+		};
+		17AE433E22E9AF9E007382AD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				17AE433F22E9AFAB007382AD /* FatalErrorUtil.swift */,
+				17AE434122E9B00D007382AD /* XCTestCase+FatalError.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,18 +161,40 @@
 			productReference = 1732C15222E84B8F00A56D61 /* Laly.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		17AE432E22E9A253007382AD /* LalyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17AE433922E9A253007382AD /* Build configuration list for PBXNativeTarget "LalyTests" */;
+			buildPhases = (
+				17AE432B22E9A253007382AD /* Sources */,
+				17AE432C22E9A253007382AD /* Frameworks */,
+				17AE432D22E9A253007382AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17AE433622E9A253007382AD /* PBXTargetDependency */,
+			);
+			name = LalyTests;
+			productName = LalyTests;
+			productReference = 17AE432F22E9A253007382AD /* LalyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1732C14922E84B8F00A56D61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = Accenture;
 				TargetAttributes = {
 					1732C15122E84B8F00A56D61 = {
 						CreatedOnToolsVersion = 11.0;
 						LastSwiftMigration = 1100;
+					};
+					17AE432E22E9A253007382AD = {
+						CreatedOnToolsVersion = 11.0;
 					};
 				};
 			};
@@ -136,12 +212,20 @@
 			projectRoot = "";
 			targets = (
 				1732C15122E84B8F00A56D61 /* Laly */,
+				17AE432E22E9A253007382AD /* LalyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1732C15022E84B8F00A56D61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17AE432D22E9A253007382AD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,12 +242,32 @@
 				1732C16522E84BE300A56D61 /* Laly+LayoutSize.swift in Sources */,
 				1732C16422E84BE300A56D61 /* Laly+Constraintable.swift in Sources */,
 				1732C16322E84BE300A56D61 /* Laly+LayoutEdge.swift in Sources */,
+				17AE434322E9B409007382AD /* FatalErrorUtil.swift in Sources */,
 				1732C16722E84BE300A56D61 /* Laly+LayoutCenter.swift in Sources */,
 				1732C16622E84BE300A56D61 /* LalyLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		17AE432B22E9A253007382AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17AE433B22E9A7C1007382AD /* SizeTests.swift in Sources */,
+				17AE433D22E9A7DB007382AD /* CenterTests.swift in Sources */,
+				17AE434222E9B00D007382AD /* XCTestCase+FatalError.swift in Sources */,
+				17301CEF22EAE5E300B331F8 /* EdgeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		17AE433622E9A253007382AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1732C15122E84B8F00A56D61 /* Laly */;
+			targetProxy = 17AE433522E9A253007382AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1732C15822E84B8F00A56D61 /* Debug */ = {
@@ -290,22 +394,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 28T6MHF533;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Laly/Info.plist;
+				INFOPLIST_FILE = Laly/Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.Laly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -316,22 +426,65 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 28T6MHF533;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Laly/Info.plist;
+				INFOPLIST_FILE = Laly/Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ap.Laly;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		17AE433722E9A253007382AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 28T6MHF533;
+				INFOPLIST_FILE = LalyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ap.LalyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17AE433822E9A253007382AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 28T6MHF533;
+				INFOPLIST_FILE = LalyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ap.LalyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +507,15 @@
 			buildConfigurations = (
 				1732C15B22E84B8F00A56D61 /* Debug */,
 				1732C15C22E84B8F00A56D61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17AE433922E9A253007382AD /* Build configuration list for PBXNativeTarget "LalyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17AE433722E9A253007382AD /* Debug */,
+				17AE433822E9A253007382AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
