@@ -14,9 +14,10 @@ The current release of Laly supports the following versions of iOS and OS X:
 
 * Xcode
   * Language Support: **Swift** *(5.1)*
-  * Fully Compatible With: **Xcode 11.0**
+  * Fully Compatible With: **Xcode 10.0**
 * iOS
   * Fully Compatible With: **iOS 9.0**
+  
   
 ### Using [Carthage](https://github.com/Carthage/Carthage)
 1. Add the `Andrei-Popilian/Laly` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
@@ -41,6 +42,8 @@ The current release of Laly supports the following versions of iOS and OS X:
 
 4. Import the Laly framework/module.
   * Swift: `import Laly`
+
+#
 
 That's it - now go write some beautiful Auto Layout code!
 
