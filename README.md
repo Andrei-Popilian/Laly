@@ -23,7 +23,7 @@ The current release of Laly supports the following versions of iOS and OS X:
 1. Add the `Andrei-Popilian/Laly` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
 
   ```ogdl
-  github "Andrei-Popilian/Laly"
+  github "Andrei-Popilian/Laly" == 1.3.0
   ```
 
 2. Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework into your project.
