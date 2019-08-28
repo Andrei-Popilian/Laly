@@ -9,8 +9,8 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public extension LalyLayout  {
-    
+public extension LalyLayout {
+
     /**
      Used to create a size constraint to self with a variable size
      Usage e.g: "someView.laly.size(.width(>=200))"
@@ -25,7 +25,7 @@ public extension LalyLayout  {
     func size(_ type: LayoutOperationSize) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type)
     }
-    
+
     /**
      Used to create a size constraint to self with a constant size
      Usage e.g: "someView.laly.size(.width(200))"
@@ -40,7 +40,7 @@ public extension LalyLayout  {
     func size(_ type: LayoutConstantSize) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type)
     }
-    
+
     /**
      Used to create multiple size constraints to self with variable sizes
      Usage e.g: "someView.laly.size(.height(>=10), .width(<=10))"
@@ -56,7 +56,7 @@ public extension LalyLayout  {
         types.checkForDuplicates()
         return types.map { size($0) }
     }
-    
+
     /**
      Used to create multiple size constraints to self
      Usage e.g: "someView.laly.size(.height(10),  .width(10))"
@@ -72,7 +72,7 @@ public extension LalyLayout  {
         types.checkForDuplicates()
         return types.map { size($0) }
     }
-    
+
     /**
      Used to create a size constraint equal the same size of another UIComponent
      Usage e.g: "someView.laly.size(of: imageView, on: .width)"
@@ -88,7 +88,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable, on type: LayoutSize) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type, of: relationView)
     }
-    
+
     /**
      Used to create a size constraint equal the another size type of other UIComponent
      Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .width))"
@@ -104,7 +104,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable, relation type: (LayoutSize, to: LayoutSize)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
-    
+
     /**
      Used to create a size constraint equal the another size type of other UIComponent + additionl constant or multiplier
      Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .heightBy(10)))"
@@ -121,7 +121,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable, relation type: (LayoutSize, to: DetailedLayoutSize)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
-    
+
     /**
      Used to create a size constraint equal the another size type of other UIComponent + additional constant or multiplier with operations
      Usage e.g: "someView.laly.size(of: imageView, relation: (.height, to: .height(>=10)))"
@@ -138,7 +138,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable, relation type: (LayoutSize, to: DetailedOperationLayoutSize)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type.0, toType: type.to, of: relationView)
     }
-    
+
     /**
      Used to create  multiple constraints equal the another size type of other UIComponent + additional constant or multiplier
      Usage e.g: "someView.laly.size(of: imageView, relations: (.height, to: height(10)), (.width, to: .width(15)))"
@@ -154,7 +154,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable, relations layoutRelations: (LayoutSize, to: DetailedLayoutSize)...) -> [NSLayoutConstraint] {
         return layoutRelations.map { size(of: relationView, relation: ($0.0, to: $0.to)) }
     }
-    
+
     /**
      Used to create multiple constraints in order to have the same size as relationView UIComponent
      Usage e.g: "someView.laly.size(to: imageView)
@@ -169,7 +169,7 @@ public extension LalyLayout  {
     func size(of relationView: Constraintable) -> [NSLayoutConstraint] {
         size(of: relationView, relations: (.width, to: .widthBy(0)), (.height, to: .heightBy(0)))
     }
-    
+
     //prediction.laly.sizes(of: imageView, relations: (.height, to: height(>=10)), (.width, to: .width(<=15)))
     /**
      Used to create  multiple constraints equal the another size type of other UIComponent + additional constant or multiplier with operations
@@ -191,7 +191,7 @@ public extension LalyLayout  {
 public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
     case height(_ margin: LalyMargin)
     case width(_ margin: LalyMargin)
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .height:
@@ -200,14 +200,14 @@ public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
             return .width
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .height(let c), .width(let c):
             return LalyRelationer(.notAnAttribute, c.relation, const: c.points)
         }
     }
-    
+
     private var rawValue: Int {
         switch self {
         case .height:
@@ -216,7 +216,7 @@ public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
             return 1
         }
     }
-    
+
     public static func == (lhs: LayoutOperationSize, rhs: LayoutOperationSize) -> Bool {
         switch (lhs, rhs) {
         case (.height, .height),
@@ -226,7 +226,7 @@ public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
@@ -235,7 +235,7 @@ public enum LayoutOperationSize: Hashable, Duplicatable, AtributoRelationable {
 public enum LayoutConstantSize: Hashable, Duplicatable, AtributoRelationable {
     case height(_ constant: CGFloat)
     case width(_ constant: CGFloat)
-    
+
     private var rawValue: Int {
         switch self {
         case .height:
@@ -244,7 +244,7 @@ public enum LayoutConstantSize: Hashable, Duplicatable, AtributoRelationable {
             return 1
         }
     }
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .height:
@@ -253,14 +253,14 @@ public enum LayoutConstantSize: Hashable, Duplicatable, AtributoRelationable {
             return .width
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .height(let c), .width(let c):
             return LalyRelationer(.notAnAttribute, .equal, const: c)
         }
     }
-    
+
     public static func == (lhs: LayoutConstantSize, rhs: LayoutConstantSize) -> Bool {
         switch (lhs, rhs) {
         case (.height, .height),
@@ -270,7 +270,7 @@ public enum LayoutConstantSize: Hashable, Duplicatable, AtributoRelationable {
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
@@ -281,7 +281,7 @@ public enum DetailedLayoutSize: Relationable {
     case heightBy(_ constant: CGFloat = 0)
     case widthMultiply(_ value: CGFloat)
     case heightMultiply(_ value: CGFloat)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .heightBy(let c):
@@ -301,28 +301,28 @@ public enum DetailedOperationLayoutSize: Relationable {
     case height(_ margin: LalyMargin)
     case widthMultiply(_ margin: LalyMargin)
     case heightMultiply(_ margin: LalyMargin)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .height(let c):
             return LalyRelationer(.height, c.relation, const: c.points)
-            
+
         case .heightMultiply(let c):
             return LalyRelationer(.height, c.relation, multiply: c.points)
-            
+
         case .width(let c):
             return LalyRelationer(.width, c.relation, const: c.points)
-            
+
         case .widthMultiply(let c):
             return LalyRelationer(.width, c.relation, multiply: c.points)
         }
     }
 }
 
-public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
+public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable {
     case width
     case height
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .height:
@@ -331,7 +331,7 @@ public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
             return .width
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .height:
@@ -340,7 +340,7 @@ public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
             return LalyRelationer(.width, .equal)
         }
     }
-    
+
     private var rawValue: Int {
         switch self {
         case .width:
@@ -349,7 +349,7 @@ public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
             return 1
         }
     }
-    
+
     public static func == (lhs: LayoutSize, rhs: LayoutSize) -> Bool {
         switch (lhs, rhs) {
         case (.width, .width),
@@ -359,11 +359,8 @@ public enum LayoutSize: Hashable, Duplicatable, AtributoRelationable{
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
 }
-
-
-

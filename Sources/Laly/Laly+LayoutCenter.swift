@@ -9,8 +9,8 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public extension LalyLayout  {
-    
+public extension LalyLayout {
+
     /**
      Used to create a center constraint to another UIComponent.
      Usage e.g: "someView.laly.center(to: otherView, on: .x(10))"
@@ -26,7 +26,7 @@ public extension LalyLayout  {
     func center(to relationView: Constraintable, on type: LayoutConstantCenter) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type, of: relationView)
     }
-    
+
     /**
      Used to create a center constraint to another UIComponent.
      Usage e.g: "someView.laly.center(to: otherView, on: .x)"
@@ -42,7 +42,7 @@ public extension LalyLayout  {
     func center(to relationView: Constraintable, on type: LayoutCenter) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type, of: relationView)
     }
-    
+
     /**
      Used to create a center constraint to another UIComponent.
      Usage e.g: "someView.laly.center(to: otherView, on: .x, .y)"
@@ -58,9 +58,9 @@ public extension LalyLayout  {
     @discardableResult
     func center(to relationView: Constraintable, on types: LayoutCenter...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { center(to: relationView ,on: $0) }
+        return types.map { center(to: relationView, on: $0) }
     }
-    
+
     /**
      Used to create a center constraint to another UIComponent.
      Usage e.g: "someView.laly.center(to: otherView, on: .x(5),  .y(10))"
@@ -76,15 +76,14 @@ public extension LalyLayout  {
     @discardableResult
     func center(to relationView: Constraintable, on types: LayoutConstantCenter...) -> [NSLayoutConstraint] {
         types.checkForDuplicates()
-        return types.map { center(to: relationView ,on: $0) }
+        return types.map { center(to: relationView, on: $0) }
     }
 }
-
 
 public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
     case x(_ constant: CGFloat = 0)
     case y(_ constant: CGFloat = 0)
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .x:
@@ -93,7 +92,7 @@ public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
             return NSLayoutConstraint.Attribute.centerY
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .x(let c):
@@ -102,7 +101,7 @@ public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
             return LalyRelationer(.centerY, .equal, const: c)
         }
     }
-    
+
     private var rawValue: Int {
         switch self {
         case .x:
@@ -111,7 +110,7 @@ public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
             return 1
         }
     }
-    
+
     public static func == (lhs: LayoutConstantCenter, rhs: LayoutConstantCenter) -> Bool {
         switch (lhs, rhs) {
         case (.x, .x),
@@ -121,7 +120,7 @@ public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
@@ -130,7 +129,7 @@ public enum LayoutConstantCenter: Hashable, Duplicatable, AtributoRelationable {
 public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
     case x
     case y
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .x:
@@ -139,7 +138,7 @@ public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
             return NSLayoutConstraint.Attribute.centerY
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .x:
@@ -148,7 +147,7 @@ public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
             return LalyRelationer(.centerY, .equal)
         }
     }
-    
+
     private var rawValue: Int {
         switch self {
         case .x:
@@ -157,7 +156,7 @@ public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
             return 1
         }
     }
-    
+
     public static func == (lhs: LayoutCenter, rhs: LayoutCenter) -> Bool {
         switch (lhs, rhs) {
         case (.x, .x),
@@ -167,7 +166,7 @@ public enum LayoutCenter: Hashable, Duplicatable, AtributoRelationable {
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }

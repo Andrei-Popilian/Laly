@@ -1,0 +1,56 @@
+disabled_rules: # rule identifiers to exclude from running
+  - identifier_name
+  - nesting
+  - file_length
+  - cyclomatic_complexity
+opt_in_rules: # some rules are only opt-in
+  - control_statement
+  - empty_count
+  - trailing_newline
+  - colon
+  - comma
+  - contains_over_first_not_nil
+  - convenience_type
+  - function_default_parameter_at_end
+  - identical_operands
+  - implicit_getter
+  - inert_defer
+  - mark
+  - multiline_parameters
+  - redundant_discardable_let
+  - redundant_optional_initialization
+  - weak_delegate
+included: # paths to include during linting. `--path` is ignored if present.
+  - Sources
+  - Tests
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Sources/R.generated.swift
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly. Give warning only for force casting
+
+force_try:
+  severity: warning # explicitly. Give warning only for force try
+
+line_length:
+  warning: 300
+  error: 350
+
+large_tuple: # warn user when using 3 values in tuple, give error if there are 4
+   - 3
+   - 4
+
+function_parameter_count:
+   - 4
+   - 5
+   
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+type_name:
+  min_length: 4 # only warning
+  max_length: # warning and error
+    warning: 30
+    error: 35
+  excluded: iPhone # excluded via string
+reporter: "xcode"

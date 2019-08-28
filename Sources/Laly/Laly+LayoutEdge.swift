@@ -9,8 +9,8 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public extension LalyLayout  {
-    
+public extension LalyLayout {
+
     /**
      Used to create an edge constraint equal the same edge of other UIComponent
      Usage e.g: "someView.laly.edge(to: relationView, of: .botBy(10))"
@@ -27,7 +27,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, of type: ConstraintType) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the same edges of other UIComponent
      Usage e.g: "someView.laly.edges(to: imageView: of: .leadBy(10), .trail)"
@@ -45,7 +45,7 @@ public extension LalyLayout  {
         types.checkForDuplicates()
         return types.map { edge(to: relationView, of: $0) }
     }
-    
+
     /**
      Used to create an edge constraint equal the same edge of other UIComponent by operation
      Usage e.g: "someView.laly.edges(to: imageView: of: .bot(>=10))"
@@ -61,7 +61,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, of type: ConstraintOperationType) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: type, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the same edges of other UIComponent operations
      Usage e.g: "someView.laly.edgesTo(imageView: of: .lead(>=10), .trail())"
@@ -79,7 +79,7 @@ public extension LalyLayout  {
         types.checkForDuplicates()
         return types.map { edge(to: relationView, of: $0) }
     }
-    
+
     /**
      Used to create a list of edge constraints equal the same edges of other UIComponent  plus an optional identation
      Usage e.g: "someView.laly.edges(to: imageView, ofIdentation: 10)"
@@ -97,7 +97,7 @@ public extension LalyLayout  {
     func edges(to relationView: Constraintable, ofIdentation const: CGFloat = 0) -> [NSLayoutConstraint] {
         edges(to: relationView, of: .leadBy(const), .trailBy(-const), .botBy(-const), .topBy(const))
     }
-    
+
     /**
      Used to create an edge constraint equal the another edge type of other UIComponent + additional constant
      Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.top, to: .botBy(10)))"
@@ -113,7 +113,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYAxis)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant
      Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.top, to: .topBy(-10)), (.bot, to: botBy(-10)))"
@@ -129,7 +129,7 @@ public extension LalyLayout  {
     func edges(to relationView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYAxis)...) -> [NSLayoutConstraint] {
         return relations.map { edge(to: relationView, relation: ($0.0, to: $0.to)) }
     }
-    
+
     /**
      Used to create an edge constraint equal the another edge type of other UIComponent + additional constant operations
      Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.top, to: .botBy(<=10)))"
@@ -145,7 +145,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, relation: (LayoutYAxisAnchor, to: LayoutYOperationAxis)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant operations
      Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.top, to: .topBy(-10)), (.bot, to: botBy(-10)))"
@@ -158,10 +158,10 @@ public extension LalyLayout  {
      - Note: Use "deactivated()" function if the constraint is required to be deactivated
      */
     @discardableResult
-    func edges(to relationView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint]  {
+    func edges(to relationView: Constraintable, relations: (LayoutYAxisAnchor, to: LayoutYOperationAxis)...) -> [NSLayoutConstraint] {
         return relations.map { edge(to: relationView, relation: ($0.0, to: $0.1)) }
     }
-    
+
     /**
      Used to create an edge constraint equal the another edge type of other UIComponent + additional constant
      Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.lead, to: .leadBy(10)))"
@@ -177,7 +177,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXAxis)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant
      Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.lead, to: .leadBy(10)), (.trail, to: trailBy(-10)))"
@@ -193,7 +193,7 @@ public extension LalyLayout  {
     func edges(to relationView: Constraintable, relations: (LayoutXAxisAnchor, to: LayoutXAxis)...) -> [NSLayoutConstraint] {
         return relations.map { edge(to: relationView, relation: ($0.0, to: $0.1)) }
     }
-    
+
     /**
      Used to create an edge constraint equal the another edge type of other UIComponent + additional constant operation
      Usage e.g: "someView.laly.edge(to: photoImageView, relation: (.lead, to: .leadBy(>=10)))"
@@ -209,7 +209,7 @@ public extension LalyLayout  {
     func edge(to relationView: Constraintable, relation: (LayoutXAxisAnchor, to: LayoutXOperationAxis)) -> NSLayoutConstraint {
         constraintBasedOnLayoutType(type: relation.0, toType: relation.to, of: relationView)
     }
-    
+
     /**
      Used to create a list of edge constraints equal the another edge type of other UIComponent + additional constant operations
      Usage e.g: "someView.laly.edge(to: photoImageView, relations: (.lead, to: .leadBy(>=10)), (.trail, to: trailBy(-10)))"
@@ -231,7 +231,7 @@ public enum LayoutYAxisAnchor: Attributable {
     case top
     case bot
     case centerY
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .top:
@@ -248,7 +248,7 @@ public enum LayoutYAxis: Relationable {
     case topBy(_ constant: CGFloat = 0)
     case botBy(_ constant: CGFloat = 0)
     case centerYBy(_ constant: CGFloat = 0)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .topBy(let c):
@@ -265,7 +265,7 @@ public enum LayoutYOperationAxis: Relationable {
     case topBy(_ margin: LalyMargin)
     case botBy(_ margin: LalyMargin)
     case centerYBy(_ margin: LalyMargin)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .topBy(let c):
@@ -282,7 +282,7 @@ public enum LayoutXAxisAnchor: Attributable {
     case lead
     case trail
     case centerX
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .lead:
@@ -299,7 +299,7 @@ public enum LayoutXAxis: Relationable {
     case leadBy(_ constant: CGFloat = 0)
     case trailBy(_ constant: CGFloat = 0)
     case centerXBy(_ constant: CGFloat = 0)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .leadBy(let c):
@@ -316,7 +316,7 @@ public enum LayoutXOperationAxis: Relationable {
     case leadBy(_ margin: LalyMargin)
     case trailBy(_ margin: LalyMargin)
     case centerXBy(_ margin: LalyMargin)
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .leadBy(let c):
@@ -329,7 +329,7 @@ public enum LayoutXOperationAxis: Relationable {
     }
 }
 
-public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
+public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable {
     case top
     case bot
     case lead
@@ -348,7 +348,7 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
     case trailMultiply(_ value: CGFloat)
     case widthMultiply(_ value: CGFloat)
     case heightMultiply(_ value: CGFloat)
-    
+
     private var rawValue: Int {
         switch self {
         case .top, .topBy, .topMultiply:
@@ -365,7 +365,7 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
             return 5
         }
     }
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .top, .topBy, .topMultiply:
@@ -382,7 +382,7 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
             return .trailing
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .top:
@@ -425,13 +425,24 @@ public enum ConstraintType: Duplicatable, Hashable, AtributoRelationable  {
     }
     public static func == (lhs: ConstraintType, rhs: ConstraintType) -> Bool {
         switch (lhs, rhs) {
-        case (.top, .top), (.bot, .bot), (.lead, .lead), (.trail, .trail), (.width, .width), (.height, .height), (.topBy, .topBy), (.botBy, .botBy), (.leadBy, .leadBy), (.trailBy, .trailBy), (.widthBy, .widthBy), (.heightBy, .heightBy), (.top, .topBy), (.topBy, .top), (.bot, .botBy), (.botBy, .bot), (.lead, .leadBy), (.leadBy, .lead), (.trail, .trailBy), (.trailBy, .trail), (.width, .widthBy), (.widthBy, .width), (.height, .heightBy), (.heightBy, .height):
+        case (.top, .top), (.bot, .bot),
+             (.lead, .lead), (.trail, .trail),
+             (.width, .width), (.height, .height),
+             (.topBy, .topBy), (.botBy, .botBy),
+             (.leadBy, .leadBy), (.trailBy, .trailBy),
+             (.widthBy, .widthBy), (.heightBy, .heightBy),
+             (.top, .topBy), (.topBy, .top),
+             (.bot, .botBy), (.botBy, .bot),
+             (.lead, .leadBy), (.leadBy, .lead),
+             (.trail, .trailBy), (.trailBy, .trail),
+             (.width, .widthBy), (.widthBy, .width),
+             (.height, .heightBy), (.heightBy, .height):
             return true
         default:
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
@@ -446,7 +457,7 @@ public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationabl
     case height(_ margin: LalyMargin)
     case widthMultiply(_ margin: LalyMargin)
     case heightMultiply(_ margin: LalyMargin)
-    
+
     func getAttribute() -> NSLayoutConstraint.Attribute {
         switch self {
         case .top:
@@ -463,7 +474,7 @@ public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationabl
             return .trailing
         }
     }
-    
+
     func getAttributor() -> LalyRelationer {
         switch self {
         case .top(let c):
@@ -484,7 +495,7 @@ public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationabl
             return LalyRelationer(.width, c.relation, multiply: c.points)
         }
     }
-    
+
     private var rawValue: Int {
         switch self {
         case .top:
@@ -501,7 +512,7 @@ public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationabl
             return 5
         }
     }
-    
+
     public static func == (lhs: ConstraintOperationType, rhs: ConstraintOperationType) -> Bool {
         switch (lhs, rhs) {
         case (.top, .top), (.bot, .bot), (.lead, .lead), (.trail, .trail), (.width, .width), (.height, .height), (.width, .widthMultiply), (.height, .heightMultiply), (.widthMultiply, .width), (.heightMultiply, .height):
@@ -510,9 +521,8 @@ public enum ConstraintOperationType: Duplicatable, Hashable, AtributoRelationabl
             return false
         }
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.rawValue)
     }
 }
-
