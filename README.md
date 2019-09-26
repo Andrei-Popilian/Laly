@@ -6,6 +6,7 @@
 
 [![Platform](https://img.shields.io/static/v1?label=platform&message=iOS&color=green)](https://github.com/Andrei-Popilian/Laly)
 [![iOS Support](https://img.shields.io/static/v1?label=iOS%20Support&message=%3E=%209.0&color=blue)](https://github.com/Andrei-Popilian/Laly)
+[![Swift](https://img.shields.io/static/v1?label=Swift&message=100%&color=important)](https://github.com/Good-Practices/CoreData_Sample)
 [![Carthage](https://img.shields.io/static/v1?label=Carthage&message=compatible&color=brightgreen)](https://github.com/Andrei-Popilian/Laly)
 [![Swift PM](https://img.shields.io/static/v1?label=Swift%20PM&message=compatible&color=brightgreen)](https://github.com/Andrei-Popilian/Laly)
 [![License](https://img.shields.io/static/v1?label=license&message=MIT&color=important)](https://en.wikipedia.org/wiki/MIT_License)
