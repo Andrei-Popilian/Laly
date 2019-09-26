@@ -1,4 +1,14 @@
-![a0d38835-1277-4a95-a975-66693b8c3fec_200x200](https://user-images.githubusercontent.com/45980382/63086325-ed88d500-bf4f-11e9-9973-5df46b4ba4ea.png)
+<p align="center">
+<kbd>
+<img width="473" alt="logoLaly" src="https://user-images.githubusercontent.com/45980382/65672249-00132580-e049-11e9-9e80-5223981838d4.png">
+</kbd>
+</p>
+
+[![Platform](https://img.shields.io/static/v1?label=platform&message=iOS&color=green)](https://github.com/Andrei-Popilian/Laly)
+[![iOS Support](https://img.shields.io/static/v1?label=iOS%20Support&message=%3E=%209.0&color=blue)](https://github.com/Andrei-Popilian/Laly)
+[![Carthage](https://img.shields.io/static/v1?label=Carthage&message=compatible&color=brightgreen)](https://github.com/Andrei-Popilian/Laly)
+[![Swift PM](https://img.shields.io/static/v1?label=Swift%20PM&message=compatible&color=brightgreen)](https://github.com/Andrei-Popilian/Laly)
+[![License](https://img.shields.io/static/v1?label=license&message=MIT&color=important)](https://en.wikipedia.org/wiki/MIT_License)
 
 Laly is an lightweight framework ment to reduce the ammount of code used while using NSLayoutAnchor or NSLayoutConstraint.
 It's easy to learn, read/write and debug.
